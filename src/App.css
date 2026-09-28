@@ -1,0 +1,289 @@
+.app-container {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  background-color: #050505;
+  overflow-x: hidden;
+}
+
+/* Background image that stays fixed behind content */
+.bg-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-image: url('/mobile-bg.png');
+  /* Will span across due to cover */
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+/* Overlay to ensure text is readable */
+.bg-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(to bottom,
+      rgba(0, 0, 0, 0.6) 0%,
+      rgba(0, 0, 0, 0.8) 40%,
+      rgba(0, 0, 0, 0.9) 100%);
+  z-index: 1;
+}
+
+.content-wrapper {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* Sections */
+.invite-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.bismillah {
+  font-family: var(--font-script);
+  font-size: 2.2rem;
+  color: var(--color-gold-light);
+  margin-bottom: 20px;
+}
+
+.wedding-invite-text {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 30px;
+  line-height: 1.8;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.couple-names {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.name {
+  font-size: 4rem;
+  font-family: var(--font-heading);
+  color: var(--color-gold);
+  line-height: 1;
+  text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.8);
+}
+
+.ampersand {
+  font-family: var(--font-script);
+  font-size: 3rem;
+  color: var(--color-red-dahlia);
+  background: -webkit-linear-gradient(45deg, var(--color-red-dahlia), #ff6b6b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.date-large {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  color: var(--color-cream);
+  letter-spacing: 4px;
+  border-top: 1px solid rgba(212, 175, 55, 0.3);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+  padding: 15px 0;
+  margin-bottom: 30px;
+}
+
+/* Card Styling for content */
+.glass-card {
+  background: rgba(10, 10, 10, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: 16px;
+  padding: 40px 20px;
+  width: 100%;
+  margin-bottom: 40px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.section-title {
+  font-family: var(--font-script);
+  font-size: 3rem;
+  color: var(--color-gold);
+  margin-bottom: 40px;
+  text-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Families Layout */
+.families-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.family-name {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--color-cream);
+  margin-bottom: 15px;
+  letter-spacing: 2px;
+}
+
+.family-details {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.8;
+}
+
+.relation-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-gold-light);
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+
+/* Events Layout */
+.events-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.event-box {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 30px 20px;
+  transition: transform 0.3s;
+}
+
+.event-box:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.event-title {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  color: var(--color-gold);
+  margin-bottom: 25px;
+  letter-spacing: 2px;
+}
+
+.event-info-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.event-icon {
+  color: var(--color-red-dahlia);
+}
+
+.event-info-text {
+  text-align: left;
+}
+
+.event-info-text h4 {
+  font-size: 1rem;
+  margin-bottom: 4px;
+  color: var(--color-gold-light);
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.event-info-text p {
+  color: var(--color-cream);
+  font-size: 0.95rem;
+}
+
+/* Footer */
+.footer {
+  width: 100%;
+  padding: 60px 20px;
+  text-align: center;
+  border-top: 1px solid rgba(212, 175, 55, 0.1);
+  background: rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 2;
+}
+
+.footer-names {
+  font-family: var(--font-script);
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  color: var(--color-gold);
+}
+
+.footer-thanks {
+  font-family: var(--font-heading);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* DESKTOP RESPONSIVE DESIGN */
+@media (min-width: 768px) {
+  .couple-names {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .name {
+    font-size: 5rem;
+  }
+
+  .glass-card {
+    padding: 60px;
+  }
+
+  .families-grid {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 60px;
+  }
+
+  .families-grid>div {
+    flex: 1;
+  }
+
+  .events-grid {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 40px;
+  }
+
+  .event-box {
+    flex: 1;
+    padding: 40px;
+  }
+}

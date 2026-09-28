@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Great+Vibes&family=Outfit:wght@300;400;500;600&display=swap');
+
+:root {
+  --color-cream: #f9f6f0;
+  --color-cream-dark: #f0e9dd;
+  --color-red-dahlia: #7a1f24;
+  --color-green-olive: #828a50;
+  --color-gold: #d4af37;
+  --color-gold-light: #f3e5ab;
+  --color-text: #f9f6f0; /* Light text for dark bg */
+  
+  --font-heading: 'Cinzel', serif;
+  --font-body: 'Outfit', sans-serif;
+  --font-script: 'Great Vibes', cursive;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: #050505; /* Dark moody body */
+  color: var(--color-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  color: var(--color-gold); /* Gold headings */
+}
+
+.script-font {
+  font-family: var(--font-script);
+  color: var(--color-gold-light);
+}
+
+/* Base sections */
+.section {
+  padding: 60px 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
