@@ -9,46 +9,69 @@ const WelcomeScreen = ({ onOpen }) => {
   const handleOpen = () => {
     if (isOpen) return;
     setIsOpen(true);
-    // After animation, hide welcome screen
+    // Give time for the gatefold to slide open fully (1.5s)
     setTimeout(() => {
       setIsHidden(true);
       if (onOpen) onOpen();
-    }, 1200);
+    }, 1500);
   };
 
   if (isHidden) return null;
 
   return (
-    <AnimatePresence>
-      {!isHidden && (
-        <motion.div 
-          className="modern-welcome-wrapper"
-          initial={{ opacity: 1 }}
-          animate={{ opacity: isOpen ? 0 : 1 }}
-          transition={{ duration: 1, delay: 0.2 }}
-        >
-          <div className="modern-welcome-bg"></div>
-          
+    <div className="gatefold-scene">
+      {/* LEFT PANEL */}
+      <motion.div 
+        className="gatefold-panel left-panel"
+        initial={{ x: 0 }}
+        animate={isOpen ? { x: '-100vw' } : { x: 0 }}
+        transition={{ duration: 1.2, delay: 0.2, ease: [0.76, 0, 0.24, 1] }}
+        style={{ position: 'absolute', overflow: 'hidden' }}
+      >
+        <img src="/floral-top-left.png" alt="" style={{ position: 'absolute', top: '-10px', left: '-20px', width: '200px', mixBlendMode: 'multiply', opacity: 0.8, pointerEvents: 'none' }} />
+        <img src="/floral-top-left.png" alt="" style={{ position: 'absolute', bottom: '-10px', left: '-20px', width: '200px', mixBlendMode: 'multiply', opacity: 0.8, pointerEvents: 'none', transform: 'scaleY(-1)' }} />
+        
+        <div className="panel-content left-content" style={{ zIndex: 2 }}>
+          <h1 className="gatefold-name">Amal</h1>
+        </div>
+      </motion.div>
+
+      {/* RIGHT PANEL */}
+      <motion.div 
+        className="gatefold-panel right-panel"
+        initial={{ x: 0 }}
+        animate={isOpen ? { x: '100vw' } : { x: 0 }}
+        transition={{ duration: 1.2, delay: 0.2, ease: [0.76, 0, 0.24, 1] }}
+        style={{ position: 'absolute', overflow: 'hidden' }}
+      >
+        <img src="/floral-top-left.png" alt="" style={{ position: 'absolute', top: '-10px', right: '-20px', width: '200px', mixBlendMode: 'multiply', opacity: 0.8, pointerEvents: 'none', transform: 'scaleX(-1)' }} />
+        <img src="/floral-top-left.png" alt="" style={{ position: 'absolute', bottom: '-10px', right: '-20px', width: '200px', mixBlendMode: 'multiply', opacity: 0.8, pointerEvents: 'none', transform: 'rotate(180deg)' }} />
+        
+        <div className="panel-content right-content" style={{ zIndex: 2 }}>
+          <h1 className="gatefold-name">Samrin</h1>
+        </div>
+      </motion.div>
+
+      {/* CENTER SEAL & CALL TO ACTION */}
+      <AnimatePresence>
+        {!isOpen && (
           <motion.div 
-            className={`modern-glass-card ${isOpen ? 'open' : ''}`}
+            className="gatefold-center-lock"
+            initial={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 1.5, opacity: 0 }}
+            transition={{ duration: 0.4 }}
             onClick={handleOpen}
-            animate={isOpen ? { scale: 1.2, opacity: 0 } : { scale: 1, opacity: 1 }}
-            transition={{ duration: 1, ease: "easeInOut" }}
           >
-            <div className="welcome-content">
-              <span className="welcome-subtitle">You are invited</span>
-              <h1 className="welcome-names">Amal <br/>&<br/> Fathima</h1>
-              
-              {!isOpen && (
-                <div className="tap-to-enter">
-                  <span className="modern-pulse">Tap to Enter</span>
-                </div>
-              )}
+            <div className="wax-seal-wrapper">
+              <div className="css-golden-seal">
+                <span>A&S</span>
+              </div>
+              <div className="tap-pulse">Tap to Open</div>
             </div>
           </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+        )}
+      </AnimatePresence>
+    </div>
   );
 };
 

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Calendar, Clock } from 'lucide-react';
 import Envelope from './Envelope';
+import MusicPlayer from './MusicPlayer';
+import CursorTrail from './CursorTrail';
+import Guestbook from './Guestbook';
 import './App.css';
 
 const fadeUpVariant = {
@@ -12,111 +14,6 @@ const fadeUpVariant = {
 const staggerContainer = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
-};
-
-const FallingPetals = () => {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => { setMounted(true); }, []);
-  
-  if (!mounted) return null;
-  
-  const width = window.innerWidth;
-  const height = window.innerHeight;
-  const petals = Array.from({ length: 15 }); // Reduced count for elegance
-  
-  return (
-    <div className="petals-container" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 10 }}>
-      {petals.map((_, i) => {
-        const size = Math.random() * 15 + 10; // Sizes between 10 and 25
-        const startX = Math.random() * width;
-        const blur = Math.random() > 0.5 ? 'blur(2px)' : 'none'; // Depth of field
-        const duration = Math.random() * 10 + 15; // Slow, elegant fall (15-25s)
-        const delay = Math.random() * -20; // Staggered start times
-        
-        return (
-          <motion.div
-            key={i}
-            className="petal"
-            initial={{ y: -50, x: startX, rotate: 0, opacity: 0 }}
-            animate={{
-              y: height + 50,
-              x: [startX, startX + 50, startX - 50, startX + 20], // Elegant sway
-              rotate: 720,
-              opacity: [0, 0.8, 0.8, 0]
-            }}
-            transition={{
-              duration: duration,
-              repeat: Infinity,
-              delay: delay,
-              ease: "linear"
-            }}
-            style={{ position: 'absolute', filter: blur }}
-          >
-            {/* Elegant teardrop petal shape */}
-            <svg width={size} height={size} viewBox="0 0 24 24" fill="var(--color-red-dahlia)" xmlns="http://www.w3.org/2000/svg" style={{ opacity: 0.6 }}>
-              <path d="M12 1.5C12 1.5 2 8.5 2 15.5C2 21 6.5 22.5 12 22.5C17.5 22.5 22 21 22 15.5C22 8.5 12 1.5 12 1.5Z" />
-            </svg>
-          </motion.div>
-        );
-      })}
-    </div>
-  );
-};
-
-const CursorGlow = () => {
-  const [mousePosition, setMousePosition] = useState({ x: -200, y: -200 });
-
-  useEffect(() => {
-    const updateMousePosition = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener('mousemove', updateMousePosition);
-    return () => window.removeEventListener('mousemove', updateMousePosition);
-  }, []);
-
-  return (
-    <>
-      {/* Outer trailing circle */}
-      <motion.div
-        animate={{
-          x: mousePosition.x - 25,
-          y: mousePosition.y - 25,
-        }}
-        transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.5 }}
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '50px',
-          height: '50px',
-          border: '1px solid var(--color-red-dahlia)',
-          borderRadius: '50%',
-          pointerEvents: 'none',
-          zIndex: 9999,
-          opacity: 0.5
-        }}
-      />
-      {/* Inner precise dot */}
-      <motion.div
-        animate={{
-          x: mousePosition.x - 4,
-          y: mousePosition.y - 4,
-        }}
-        transition={{ type: "tween", ease: "linear", duration: 0 }}
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '8px',
-          height: '8px',
-          background: 'var(--color-green-olive)',
-          borderRadius: '50%',
-          pointerEvents: 'none',
-          zIndex: 9999,
-        }}
-      />
-    </>
-  );
 };
 
 const CountdownTimer = () => {
@@ -144,24 +41,75 @@ const CountdownTimer = () => {
   });
 
   return (
-    <motion.div variants={fadeUpVariant} className="countdown-box">
-      <div className="time-unit">
-        <span className="time-value">{timeLeft.days !== undefined ? timeLeft.days : '00'}</span>
-        <span className="time-label">DAYS</span>
+    <motion.div variants={fadeUpVariant} style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', fontStyle: 'italic', color: 'var(--color-green-olive)', marginBottom: '5px' }}>{timeLeft.days !== undefined ? String(timeLeft.days).padStart(2, '0') : '00'}</div>
+        <div style={{ fontFamily: 'var(--font-serif)', fontSize: '0.55rem', letterSpacing: '2px', color: 'var(--color-green-olive)' }}>DAYS</div>
       </div>
-      <div className="time-unit">
-        <span className="time-value">{timeLeft.hours !== undefined ? timeLeft.hours : '00'}</span>
-        <span className="time-label">HOURS</span>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', fontStyle: 'italic', color: 'var(--color-green-olive)', marginBottom: '5px' }}>{timeLeft.hours !== undefined ? String(timeLeft.hours).padStart(2, '0') : '00'}</div>
+        <div style={{ fontFamily: 'var(--font-serif)', fontSize: '0.55rem', letterSpacing: '2px', color: 'var(--color-green-olive)' }}>HOURS</div>
       </div>
-      <div className="time-unit">
-        <span className="time-value">{timeLeft.minutes !== undefined ? timeLeft.minutes : '00'}</span>
-        <span className="time-label">MINS</span>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', fontStyle: 'italic', color: 'var(--color-green-olive)', marginBottom: '5px' }}>{timeLeft.minutes !== undefined ? String(timeLeft.minutes).padStart(2, '0') : '00'}</div>
+        <div style={{ fontFamily: 'var(--font-serif)', fontSize: '0.55rem', letterSpacing: '2px', color: 'var(--color-green-olive)' }}>MINUTES</div>
       </div>
-      <div className="time-unit">
-        <span className="time-value">{timeLeft.seconds !== undefined ? timeLeft.seconds : '00'}</span>
-        <span className="time-label">SECS</span>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', fontStyle: 'italic', color: 'var(--color-green-olive)', marginBottom: '5px' }}>{timeLeft.seconds !== undefined ? String(timeLeft.seconds).padStart(2, '0') : '00'}</div>
+        <div style={{ fontFamily: 'var(--font-serif)', fontSize: '0.55rem', letterSpacing: '2px', color: 'var(--color-green-olive)' }}>SECONDS</div>
       </div>
     </motion.div>
+  );
+};
+
+const FallingPetals = () => {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
+
+  if (!mounted) return null;
+
+  const petals = Array.from({ length: 15 });
+  return (
+    <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', pointerEvents: 'none', zIndex: 999, overflow: 'hidden' }}>
+      {petals.map((_, i) => {
+        const left = Math.random() * 100;
+        const animDuration = 15 + Math.random() * 20;
+        const delay = Math.random() * -20;
+        const size = 8 + Math.random() * 12;
+        const isBlurred = Math.random() > 0.5;
+
+        return (
+          <motion.div
+            key={i}
+            initial={{ y: -50, x: 0, rotate: 0, opacity: 0 }}
+            animate={{
+              y: '100vh',
+              x: [0, 60, -60, 0],
+              rotate: 360,
+              opacity: [0, 0.5, 0.5, 0]
+            }}
+            transition={{
+              duration: animDuration,
+              delay: delay,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            style={{
+              position: 'absolute',
+              left: `${left}%`,
+              width: size,
+              height: size * 1.2,
+              backgroundColor: '#7A1F24',
+              borderTopLeftRadius: '50%',
+              borderBottomRightRadius: '50%',
+              borderTopRightRadius: '2px',
+              borderBottomLeftRadius: '2px',
+              filter: isBlurred ? 'blur(3px)' : 'blur(0.5px)',
+            }}
+          />
+        );
+      })}
+    </div>
   );
 };
 
@@ -180,22 +128,9 @@ function App() {
 
       {isOpened && (
         <div className="app-container">
-          <motion.div
-            className="bg-image"
-            initial={{ scale: 1.1, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
-          ></motion.div>
-
-          <motion.div
-            className="bg-overlay"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.5 }}
-          ></motion.div>
-
+          <CursorTrail />
           <FallingPetals />
-          <CursorGlow />
+          <MusicPlayer />
 
           <motion.div
             className="content-wrapper"
@@ -203,170 +138,245 @@ function App() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
           >
-
-            {/* Main Invite Section (Landing Page) */}
-            <section className="invite-section hero-section">
+            {/* Main Invite Section */}
+            {/* Main Invite Section */}
+            <section className="invite-section hero-section" style={{ paddingTop: '28vh', paddingBottom: '15vh', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
               <motion.div
                 initial="hidden"
                 animate="visible"
                 variants={staggerContainer}
-                className="glass-card main-landing-card"
+                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', padding: '0' }}
               >
-                {/* Bismillah Header */}
-                <motion.div variants={fadeUpVariant} className="bismillah" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px', marginBottom: '20px' }}>
-                  <div style={{ fontFamily: 'var(--font-heading)', fontSize: '1.8rem', color: 'var(--color-green-olive)' }}>بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
+
+                <motion.div variants={fadeUpVariant} style={{ fontFamily: 'var(--font-serif)', fontSize: '3rem', color: 'var(--color-text-primary)', marginBottom: '15px', letterSpacing: '2px', fontWeight: 'bold' }}>
+                  A <span style={{ fontFamily: 'var(--font-script)', fontSize: '2rem', fontStyle: 'italic', margin: '0 5px', color: 'var(--color-text-primary)' }}>&</span> S
                 </motion.div>
 
-                {/* Invite Text */}
-                <motion.div variants={fadeUpVariant} className="wedding-invite-text" style={{ textTransform: 'none', letterSpacing: '1px', marginBottom: '30px', fontSize: '0.9rem' }}>
-                  Together with our families, we joyfully invite you to the wedding celebration of
+                <motion.div variants={fadeUpVariant} className="couple-names" style={{ marginBottom: '20px', flexDirection: 'row', alignItems: 'center', gap: '10px', width: '100%', justifyContent: 'center' }}>
+                  <h1 className="name" style={{ fontFamily: 'var(--font-script)', fontSize: 'clamp(2.2rem, 8vw, 3.5rem)', fontWeight: 400, color: 'var(--color-text-primary)', margin: 0, background: 'none', WebkitTextFillColor: 'initial', animation: 'none', textTransform: 'capitalize' }}>Amal</h1>
+                  <span className="ampersand" style={{ fontFamily: 'var(--font-script)', fontSize: 'clamp(1.5rem, 5vw, 2.5rem)', color: 'var(--color-text-secondary)', margin: 0 }}>&</span>
+                  <h1 className="name" style={{ fontFamily: 'var(--font-script)', fontSize: 'clamp(2.2rem, 8vw, 3.5rem)', fontWeight: 400, color: 'var(--color-text-primary)', margin: 0, background: 'none', WebkitTextFillColor: 'initial', animation: 'none', textTransform: 'capitalize' }}>Samrin</h1>
                 </motion.div>
 
-                {/* Stacked Names */}
-                <motion.div variants={fadeUpVariant} className="couple-names" style={{ display: 'flex', flexDirection: 'column', gap: '15px', marginBottom: '30px' }}>
-                  <h1 className="name" style={{ textTransform: 'uppercase' }}>Amal Ammattikas</h1>
-                  <span className="ampersand" style={{ color: 'var(--color-green-olive)', fontFamily: 'var(--font-script)', textTransform: 'none' }}>With</span>
-                  <h1 className="name" style={{ textTransform: 'uppercase' }}>Fathima Samrin</h1>
+                <motion.div variants={fadeUpVariant} style={{ fontFamily: 'var(--font-serif)', fontSize: '0.65rem', letterSpacing: '4px', textTransform: 'uppercase', color: 'var(--color-text-primary)', textAlign: 'center', lineHeight: '2', marginBottom: '25px', maxWidth: '500px' }}>
+                  We request the pleasure of your company<br />to celebrate our wedding on
                 </motion.div>
 
-                {/* Date Footer */}
-                <motion.div variants={fadeUpVariant} className="date-large" style={{ border: 'none', marginBottom: '0px' }}>
-                  <span style={{ fontSize: '1rem', letterSpacing: '3px', display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>DECEMBER | 24 & 26 | 2026</span>
+                <motion.div variants={fadeUpVariant} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', borderTop: '1px solid var(--color-text-secondary)', borderBottom: '1px solid var(--color-text-secondary)', padding: '12px 0', width: '220px', marginBottom: '30px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '2px' }}>
+                    <span style={{ fontFamily: 'var(--font-serif)', fontSize: '0.8rem', letterSpacing: '2px', color: 'var(--color-text-primary)' }}>DEC</span>
+                    <span style={{ fontFamily: 'var(--font-serif)', fontSize: '3.5rem', lineHeight: '1', color: 'var(--color-text-primary)' }}>24</span>
+                    <span style={{ fontFamily: 'var(--font-serif)', fontSize: '0.8rem', letterSpacing: '2px', color: 'var(--color-text-primary)' }}>2026</span>
+                  </div>
+                  <div style={{ fontFamily: 'var(--font-serif)', fontSize: '0.65rem', letterSpacing: '5px', textTransform: 'uppercase', color: 'var(--color-text-primary)' }}>THURSDAY</div>
+                </motion.div>
+
+                <motion.div variants={fadeUpVariant} style={{ fontFamily: 'var(--font-serif)', fontSize: '0.7rem', letterSpacing: '4px', textTransform: 'uppercase', color: 'var(--color-text-primary)', marginBottom: '10px' }}>
+                  TO BE HELD AT
+                </motion.div>
+
+                <motion.div variants={fadeUpVariant} style={{ fontFamily: 'var(--font-script)', fontSize: '3rem', color: 'var(--color-text-primary)', marginBottom: '15px', textAlign: 'center', lineHeight: '1' }}>
+                  Malhar Bhoomi
+                </motion.div>
+
+                <motion.div variants={fadeUpVariant} style={{ fontFamily: 'var(--font-serif)', fontSize: '0.65rem', letterSpacing: '4px', textTransform: 'uppercase', color: 'var(--color-text-primary)', marginBottom: '0px' }}>
+                  AT SIX O' CLOCK IN THE EVENING
+                </motion.div>
+
+              </motion.div>
+            </section>
+
+            {/* Countdown Section */}
+            <section className="countdown-section">
+              {/* Left Pillar */}
+              <img src="/stone-pillar.png" alt="" style={{ position: 'absolute', left: 0, top: 0, bottom: 0, height: '100%', width: 'auto', maxWidth: 'none', transform: 'translateX(-48%)', mixBlendMode: 'multiply' }} />
+              {/* Right Pillar (Flipped) */}
+              <img src="/stone-pillar.png" alt="" style={{ position: 'absolute', right: 0, top: 0, bottom: 0, height: '100%', width: 'auto', maxWidth: 'none', transform: 'scaleX(-1) translateX(-48%)', mixBlendMode: 'multiply' }} />
+
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={staggerContainer}
+                style={{ position: 'relative', zIndex: 20, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 20px', width: '100%', maxWidth: '600px' }}
+              >
+                <motion.div variants={fadeUpVariant} style={{ fontFamily: 'var(--font-serif)', fontSize: '0.8rem', letterSpacing: '4px', textTransform: 'uppercase', color: 'var(--color-green-olive)', marginBottom: '40px' }}>
+                  UNTIL 26 DECEMBER 2026
+                </motion.div>
+
+                <CountdownTimer />
+              </motion.div>
+            </section>
+
+            {/* Quran Quote Section */}
+            <section className="quote-section">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={staggerContainer}
+                className="quote-container"
+              >
+                <motion.div variants={fadeUpVariant} className="quote-subtitle">
+                  <span className="quote-line"></span>
+                  FROM THE HOLY QURAN
+                  <span className="quote-line"></span>
+                </motion.div>
+
+                <motion.div variants={fadeUpVariant} className="quote-arabic">
+                  وَخَلَقْنَاكُمْ أَزْوَاجًا
+                </motion.div>
+
+                <motion.div variants={fadeUpVariant} className="quote-english">
+                  "And We created you in pairs."
+                </motion.div>
+
+                <motion.div variants={fadeUpVariant} className="quote-reference">
+                  HOLY QURAN • 78:08
                 </motion.div>
               </motion.div>
             </section>
 
-            {/* The Families Section */}
-            <section className="invite-section" style={{ paddingTop: 0 }}>
+            {/* Families Section - Glass Cards */}
+            <section className="invite-section" style={{ paddingTop: '80px', paddingBottom: '40px' }}>
               <motion.div
-                className="glass-card"
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }}
+                viewport={{ once: true }}
                 variants={staggerContainer}
+                style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '50px' }}
               >
-                <h2 className="section-title" style={{ fontSize: '2rem', letterSpacing: '3px' }}>The Families</h2>
+                <div className="subtitle" style={{ letterSpacing: '4px', marginBottom: '10px' }}>WITH THE BLESSINGS OF</div>
 
-                <div className="families-grid">
-                  <motion.div variants={fadeUpVariant} className="family-card">
-                    <h3 className="family-name">Amal Ammattikas</h3>
-                    <div className="family-details">
-                      <p className="house-name">AMMATTIKAS HOUSE</p>
-                      <div className="relation-section">
-                        <span className="relation-script">Son of</span>
-                        <p className="parents-name">PK Abdul Jabbar & Rahmath.k</p>
-                      </div>
-                      <div className="relation-section">
-                        <span className="relation-script">Grandson of</span>
-                        <p className="grandparents-name">Late Abdurahimankutty Kayakkal<br />& Late Ibrahim Haji Nandi</p>
-                      </div>
-                    </div>
-                  </motion.div>
+                {/* Groom's Family Card */}
+                <motion.div variants={fadeUpVariant} style={{ position: 'relative', width: '90%', maxWidth: '450px', backgroundColor: '#F4F1E8', borderRadius: '25px', padding: '50px 30px', boxShadow: '0 10px 40px rgba(0, 0, 0, 0.05)', border: '1px solid rgba(130, 138, 80, 0.15)', display: 'flex', flexDirection: 'column', alignItems: 'center', zIndex: 10 }}>
+                  <img src="/floral-top-left.png" alt="" style={{ position: 'absolute', top: '-40px', left: '-40px', width: '160px', pointerEvents: 'none', mixBlendMode: 'multiply' }} />
 
-                  <motion.div variants={fadeUpVariant} className="family-card">
-                    <h3 className="family-name">Fathima Samrin</h3>
-                    <div className="family-details">
-                      <p className="house-name">VADAKANETHIL (EXCEL)</p>
-                      <div className="relation-section">
-                        <span className="relation-script">Daughter of</span>
-                        <p className="parents-name">Shamsudeen & Joonu Shamsudeen</p>
-                      </div>
-                      <div className="relation-section">
-                        <span className="relation-script">Granddaughter of</span>
-                        <p className="grandparents-name">VM Ibrahimkutty Haji<br />& Late CK Ibrahim</p>
-                      </div>
-                    </div>
-                  </motion.div>
-                </div>
+                  <div style={{ fontFamily: 'var(--font-script)', fontSize: '2.5rem', color: 'var(--color-text-primary)', marginBottom: '5px' }}>Amal Ammattikas</div>
+                  <div style={{ fontFamily: 'var(--font-serif)', fontSize: '0.65rem', letterSpacing: '4px', textTransform: 'uppercase', color: 'var(--color-text-secondary)', marginBottom: '30px' }}>Ammattikas House</div>
+
+                  <div style={{ fontFamily: 'var(--font-serif)', fontSize: '0.85rem', color: 'var(--color-text-primary)', textAlign: 'center', lineHeight: '2' }}>
+                    <span style={{ fontSize: '0.6rem', letterSpacing: '3px', color: 'var(--color-green-olive)', textTransform: 'uppercase' }}>Son of</span><br />
+                    PK Abdul Jabbar & Rahmath K<br />
+                    <div style={{ margin: '15px 0' }}></div>
+                    <span style={{ fontSize: '0.6rem', letterSpacing: '3px', color: 'var(--color-green-olive)', textTransform: 'uppercase' }}>Grandson of</span><br />
+                    Late Abdurahimankutty Kayakkal &<br />Late Ibrahim Haji Nandi
+                  </div>
+                </motion.div>
+
+                {/* Bride's Family Card */}
+                <motion.div variants={fadeUpVariant} style={{ position: 'relative', width: '90%', maxWidth: '450px', backgroundColor: '#F4F1E8', borderRadius: '25px', padding: '50px 30px', boxShadow: '0 10px 40px rgba(0, 0, 0, 0.05)', border: '1px solid rgba(130, 138, 80, 0.15)', display: 'flex', flexDirection: 'column', alignItems: 'center', zIndex: 10 }}>
+                  <img src="/floral-drapes-tr.png" alt="" style={{ position: 'absolute', top: '-40px', right: '-40px', width: '180px', pointerEvents: 'none', mixBlendMode: 'multiply' }} />
+
+                  <div style={{ fontFamily: 'var(--font-script)', fontSize: '2.5rem', color: 'var(--color-text-primary)', marginBottom: '5px', position: 'relative', zIndex: 2 }}>Fathima Samrin</div>
+                  <div style={{ fontFamily: 'var(--font-serif)', fontSize: '0.65rem', letterSpacing: '4px', textTransform: 'uppercase', color: 'var(--color-text-secondary)', marginBottom: '30px', position: 'relative', zIndex: 2 }}>Vadakanethil (Excel)</div>
+
+                  <div style={{ fontFamily: 'var(--font-serif)', fontSize: '0.85rem', color: 'var(--color-text-primary)', textAlign: 'center', lineHeight: '2', position: 'relative', zIndex: 2 }}>
+                    <span style={{ fontSize: '0.6rem', letterSpacing: '3px', color: 'var(--color-green-olive)', textTransform: 'uppercase' }}>Daughter of</span><br />
+                    Shamsudeen & Joonu Shamsudeen<br />
+                    <div style={{ margin: '15px 0' }}></div>
+                    <span style={{ fontSize: '0.6rem', letterSpacing: '3px', color: 'var(--color-green-olive)', textTransform: 'uppercase' }}>Granddaughter of</span><br />
+                    VM Ibrahimkutty Haji & Late CK Ibrahim
+                  </div>
+                </motion.div>
+
               </motion.div>
             </section>
 
             {/* Events Section */}
-            <section className="invite-section" style={{ paddingTop: 0 }}>
+            <section className="invite-section" style={{ paddingTop: '80px', paddingBottom: '80px', position: 'relative', overflow: 'hidden' }}>
+              <img src="/floral-top-left.png" alt="" style={{ position: 'absolute', top: '-20px', left: '-40px', width: '250px', opacity: 0.9, pointerEvents: 'none', mixBlendMode: 'multiply' }} />
+
               <motion.div
-                className="glass-card"
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }}
+                viewport={{ once: true }}
                 variants={staggerContainer}
+                style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
               >
-                <h2 className="section-title" style={{ fontSize: '2.5rem' }}>The Grand Celebration</h2>
+                {/* Reception - Main Highlight */}
+                <motion.div variants={fadeUpVariant} style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', width: '100%', marginTop: '40px', zIndex: 10 }}>
+                  <div style={{ fontFamily: 'var(--font-serif)', fontSize: '0.65rem', letterSpacing: '5px', textTransform: 'uppercase', color: 'var(--color-text-secondary)', marginBottom: '15px' }}>CELEBRATING OUR UNION</div>
 
-                <div className="events-grid">
-                  {/* Nikah - Subtle Single Row */}
-                  <motion.div variants={fadeUpVariant} className="minor-nikah-row">
-                    <div className="nikah-label">Nikah Ceremony</div>
-                    <div className="nikah-details">
-                      Dec 24, 2026 &nbsp;|&nbsp; 5:00 PM &nbsp;|&nbsp; CIAL Convention Center
-                    </div>
-                  </motion.div>
+                  <div style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(3.5rem, 12vw, 5rem)', color: 'var(--color-green-olive)', lineHeight: '1.1', marginBottom: '0' }}>
+                    Wedding<br />Reception
+                  </div>
+                </motion.div>
 
-                  {/* Reception - Main Event Card */}
-                  <motion.div variants={fadeUpVariant} className="event-box main-event">
-                    <h3 className="event-title">Reception</h3>
+                <motion.div variants={fadeUpVariant} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', width: '100%', marginTop: '30px' }}>
+                  <div style={{ fontFamily: 'var(--font-serif)', fontSize: '0.65rem', letterSpacing: '5px', textTransform: 'uppercase', color: 'var(--color-text-secondary)', marginBottom: '15px' }}>WHEN</div>
 
-                    <div className="main-event-content">
-                      <div className="event-info-item">
-                        <Calendar className="event-icon" size={32} />
-                        <div className="event-info-text">
-                          <h4>Date</h4>
-                          <p>December 26, 2026</p>
-                        </div>
-                      </div>
+                  <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1rem', color: 'var(--color-text-primary)', marginBottom: '30px', lineHeight: '1.8' }}>
+                    Saturday, December 26<br />At 5:00 PM
+                  </div>
 
-                      <div className="event-info-item">
-                        <Clock className="event-icon" size={32} />
-                        <div className="event-info-text">
-                          <h4>Time</h4>
-                          <p>5:00 PM to 10:00 PM</p>
-                        </div>
-                      </div>
+                  <div style={{ width: '40px', height: '1px', backgroundColor: 'var(--color-text-secondary)', opacity: 0.3, marginBottom: '30px' }}></div>
 
-                      <div className="event-info-item">
-                        <MapPin className="event-icon" size={32} />
-                        <div className="event-info-text">
-                          <h4>Venue</h4>
-                          <p>Malhar Bhoomi<br />Pantheerankavu, Calicut</p>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                </div>
+                  <div style={{ fontFamily: 'var(--font-serif)', fontSize: '0.65rem', letterSpacing: '5px', textTransform: 'uppercase', color: 'var(--color-text-secondary)', marginBottom: '15px' }}>WHERE</div>
+
+                  <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1rem', color: 'var(--color-text-primary)', marginBottom: '30px', lineHeight: '1.8' }}>
+                    Malhar Bhoomi<br />Pantheerankavu, Calicut
+                  </div>
+                </motion.div>
+
+                {/* Nikah - Minor Event */}
+                <motion.div variants={fadeUpVariant} className="minor-event-box">
+                  <div className="minor-event-label">NIKAH CEREMONY</div>
+                  <div className="minor-event-text">
+                    Thursday, December 24 at 5:00 PM &nbsp;&bull;&nbsp; CIAL Convention Center
+                  </div>
+                </motion.div>
               </motion.div>
             </section>
 
-            <section className="invite-section" style={{ paddingTop: 0 }}>
-              <CountdownTimer />
+            {/* Location Map Section */}
+            <section className="invite-section" style={{ position: 'relative', overflow: 'hidden' }}>
+              <img src="/floral-drapes-tr.png" alt="" style={{ position: 'absolute', top: '-20px', right: '-40px', width: '250px', opacity: 0.9, pointerEvents: 'none', mixBlendMode: 'multiply' }} />
 
               <motion.div
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.2 }}
                 variants={staggerContainer}
-                className="location-box"
+                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', position: 'relative', zIndex: 10 }}
               >
-                <div style={{ fontSize: '0.75rem', letterSpacing: '4px', textTransform: 'uppercase', color: 'var(--color-green-olive)', marginBottom: '10px' }}>FIND YOUR WAY</div>
-                <div style={{ fontFamily: 'var(--font-script)', fontSize: '2.5rem', color: '#444' }}>Location Map</div>
+                <div className="subtitle" style={{ letterSpacing: '4px', marginBottom: '10px' }}>FIND YOUR WAY</div>
+                <h2 className="section-title">Location Map</h2>
 
                 <motion.div variants={fadeUpVariant} className="qr-code-frame">
                   <a href="https://maps.google.com/?q=Malhar+Bhoomi+Pantheerankavu+Calicut" target="_blank" rel="noopener noreferrer">
                     <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://maps.google.com/?q=Malhar+Bhoomi+Pantheerankavu+Calicut" alt="Venue QR Code" />
                   </a>
                 </motion.div>
-
-                <motion.div variants={fadeUpVariant} className="location-scan-text">
-                  CLICK OR SCAN FOR LOCATION
-                </motion.div>
               </motion.div>
             </section>
 
-            <footer className="footer-section" style={{ padding: '40px 20px', background: 'transparent', borderTop: 'none' }}>
-              <p style={{ marginBottom: '10px', letterSpacing: '4px', textTransform: 'uppercase', color: 'var(--color-green-olive)', fontSize: '0.8rem', fontWeight: 'bold', textShadow: '0 0 15px rgba(255,255,255,1), 0 0 5px rgba(255,255,255,1)' }}>WITH BEST REGARDS</p>
-              <h2 className="footer-names" style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-red-dahlia)', margin: '15px 0', textShadow: '0 0 20px rgba(255,255,255,0.9), 0 0 5px rgba(255,255,255,1)' }}>Amal & Fathima</h2>
-              <p style={{ marginTop: '10px', fontSize: '1rem', color: '#333', fontStyle: 'italic', textShadow: '0 0 15px rgba(255,255,255,1), 0 0 5px rgba(255,255,255,1)', fontWeight: '500' }}>We eagerly wait to share our joy with you</p>
-            </footer>
-
           </motion.div>
+
+          {/* Guestbook Section */}
+          <Guestbook />
+
+          <footer className="footer-section" style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '100px 20px 80px', overflow: 'hidden' }}>
+            <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', fontFamily: 'var(--font-serif)', fontSize: '35vw', color: 'rgba(130, 138, 80, 0.04)', whiteSpace: 'nowrap', pointerEvents: 'none', zIndex: 0 }}>
+              A & S
+            </div>
+
+            <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <div style={{ fontFamily: 'var(--font-serif)', fontSize: '0.65rem', letterSpacing: '6px', textTransform: 'uppercase', color: 'var(--color-text-secondary)', marginBottom: '30px' }}>
+                With Best Regards
+              </div>
+
+              <div style={{ fontFamily: 'var(--font-script)', fontSize: 'clamp(3rem, 10vw, 4.5rem)', color: 'var(--color-green-olive)', lineHeight: '1.2', textAlign: 'center', marginBottom: '20px' }}>
+                Amal <span style={{ fontFamily: 'var(--font-serif)', fontSize: '0.6em', fontStyle: 'italic', margin: '0 10px' }}>&</span> Samrin
+              </div>
+
+              <div style={{ width: '40px', height: '1px', backgroundColor: 'var(--color-green-olive)', opacity: 0.4, marginBottom: '30px' }}></div>
+
+              <div style={{ fontFamily: 'var(--font-serif)', fontSize: '0.9rem', color: 'var(--color-text-primary)', fontStyle: 'italic', letterSpacing: '1px' }}>
+                We eagerly wait to share our joy with you
+              </div>
+            </div>
+          </footer>
         </div>
       )}
     </>

@@ -1,466 +1,615 @@
-/* ---------- REDESIGNED EDITORIAL THEME ---------- */
+:root {
+  --color-bg: #EAF1F6;
+  --color-surface: transparent;
+  --color-text-primary: #333333;
+  --color-text-secondary: #5A6A60;
+  --color-accent-maroon: #687A6E;
+  /* Sage Green */
+  --color-accent-gold: #899092;
+  /* Elegant Silver/Grey */
 
-* {
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Inter', sans-serif;
+  --font-script: 'Great Vibes', cursive;
+}
+
+body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Global Spacing and Typography Refinements */
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 300;
-  letter-spacing: 2px;
-}
-
-/* Background image that stays fixed behind content */
-.bg-image {
-  position: fixed;
-  top: -20px;
-  left: -20px;
-  right: -20px;
-  bottom: -20px;
-  background-image: url('/light-bg.png');
-  background-size: cover;
-  background-position: center;
-  opacity: 1; /* Full color */
-  filter: blur(8px); /* Perfect photographic blur */
-  z-index: 0;
-  pointer-events: none;
-}
-
-/* Background Overlay - Hidden to allow vibrant background colors */
-.bg-overlay {
-  display: none;
-}
-
-.content-wrapper {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.app-container {
   width: 100%;
-}
-
-/* Base Sections */
-.invite-section {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 80px 20px;
-  text-align: center;
-  width: 100%;
-  max-width: 1200px;
+  background-color: #F8F6F0;
+  /* Solid cream for the rest of the invitation */
 }
 
 .hero-section {
-  justify-content: center;
-  padding-top: 0;
+  background-image: url('/maison-bg.png');
+  background-size: cover;
+  background-position: center top;
+  /* Scrolls naturally with the page now */
 }
 
-/* Elegant Transparent Layout */
-.glass-card {
+.countdown-section {
+  width: 100%;
+  position: relative;
+  padding: 80px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: transparent;
+  min-height: 60vh;
+}
+
+/* Seamless full-width layout */
+.content-wrapper {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: transparent;
+}
+
+/* Global Typography Classes for Uniformity */
+.subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: var(--font-script);
+  /* Use elegant script for main titles */
+  font-size: 4rem;
+  font-weight: 400;
+  margin: 0;
+  line-height: 1.1;
+  color: var(--color-text-primary);
+}
+
+/* Elegant hero floral accent at the top */
+.hero-floral-header {
+  width: 100%;
+  height: 35vh;
+  /* Slightly taller for full width */
+  min-height: 250px;
+  background-image: url('/light-bg.png');
+  background-size: cover;
+  background-position: center 20%;
+  opacity: 0.7;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 100%);
+}
+
+/* Base Sections */
+.invite-section {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 60px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* Quran Quote Section */
+.quote-section {
+  width: 100%;
+  background-color: var(--color-surface);
+  /* Seamless white theme */
+  padding: 80px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Removed dark starry background */
+.quote-section::before {
+  display: none;
+}
+
+.quote-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  z-index: 1;
+}
+
+.quote-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  letter-spacing: 5px;
+  color: var(--color-accent-gold);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.quote-line {
+  height: 1px;
+  width: 40px;
+  background-color: var(--color-accent-gold);
+  opacity: 0.5;
+}
+
+.quote-arabic {
+  font-family: 'Amiri', serif;
+  font-size: 3.5rem;
+  color: var(--color-accent-maroon);
+  margin: 10px 0 0 0;
+}
+
+.quote-english {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-style: italic;
+  color: var(--color-text-primary);
+  letter-spacing: 1px;
+}
+
+.quote-reference {
+  font-family: var(--font-sans);
+  font-size: 0.6rem;
+  letter-spacing: 6px;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+
+/* Families Section */
+.family-container {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  position: relative;
+}
+
+.family-block {
+  flex: 1 1 0;
+  min-width: 0;
+  /* Forces exact equal width regardless of content length */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   background: transparent;
+  padding: 0 10px;
   border: none;
   box-shadow: none;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  padding: 60px 20px;
-  border-radius: 0;
-  margin: 0 auto;
-  max-width: 800px;
-  width: 100%;
 }
 
-/* Typography Perfection */
-.bismillah {
-  font-family: var(--font-script);
-  font-size: 2.5rem;
-  color: var(--color-green-olive);
-  margin-bottom: 20px;
-  text-shadow: 0 0 20px rgba(255, 255, 255, 1);
-  font-weight: 300;
+.family-line {
+  display: none;
 }
 
-.wedding-invite-text {
-  font-family: var(--font-heading);
+.family-name {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  margin: 0;
+  white-space: nowrap;
+
+  /* Stunning metallic text glaze effect */
+  background: linear-gradient(to right,
+      var(--color-text-primary) 30%,
+      var(--color-accent-gold) 45%,
+      #D4AF37 50%,
+      var(--color-accent-gold) 55%,
+      var(--color-text-primary) 70%);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shine-glaze 6s linear infinite;
+}
+
+.family-house {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  letter-spacing: 5px;
   text-transform: uppercase;
-  letter-spacing: 4px;
+  color: var(--color-accent-gold);
+  margin-bottom: 25px;
+}
+
+.family-parents {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: var(--color-text-primary);
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+.family-grandparents {
+  font-family: var(--font-sans);
   font-size: 0.85rem;
-  color: #555555;
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+  max-width: 90%;
+}
+
+.family-relation {
+  font-family: var(--font-sans);
+  font-size: 0.55rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+  display: block;
+  margin-bottom: 8px;
+  opacity: 0.7;
+}
+
+.hero-section {
+  padding-top: 0;
+  margin-top: -80px;
+  /* Pull up over the faded floral header */
+  z-index: 10;
+}
+
+.bismillah {
+  font-size: 1.8rem;
+  color: var(--color-text-primary);
+  margin-bottom: 50px;
+  opacity: 0.7;
+}
+
+.subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  color: var(--color-text-secondary);
   margin-bottom: 40px;
-  line-height: 2;
-  max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
-  text-shadow: 0 0 15px rgba(255, 255, 255, 1);
 }
 
 .couple-names {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px; 
+  gap: 10px;
   margin-bottom: 40px;
 }
 
 .name {
-  font-size: 2.5rem;
-  letter-spacing: 3px;
-  font-family: var(--font-heading);
-  font-weight: 300;
-  line-height: 1.1;
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), text-shadow 0.4s ease;
-  
-  /* Very subtle, sophisticated shine */
-  background: linear-gradient(
-    110deg,
-    var(--color-red-dahlia) 45%,
-    #e8747a 50%,
-    var(--color-red-dahlia) 55%
-  );
+  font-family: var(--font-serif);
+  font-size: 3.2rem;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 1px;
+
+  /* Stunning metallic text glaze effect */
+  background: linear-gradient(to right,
+      var(--color-text-primary) 30%,
+      var(--color-accent-gold) 45%,
+      #D4AF37 50%,
+      var(--color-accent-gold) 55%,
+      var(--color-text-primary) 70%);
   background-size: 200% auto;
+  color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shineGlaze 8s ease-in-out infinite;
+  animation: shine-glaze 6s linear infinite;
 }
 
-.name:hover {
-  transform: scale(1.05);
-  text-shadow: 0 0 30px rgba(255,255,255,1), 0 0 10px rgba(255,255,255,1);
-}
-
-@keyframes shineGlaze {
-  0% { background-position: 200% center; }
-  100% { background-position: -200% center; }
+@keyframes shine-glaze {
+  to {
+    background-position: 200% center;
+  }
 }
 
 .ampersand {
   font-family: var(--font-script);
-  font-size: 2.2rem; 
-  color: var(--color-red-dahlia);
-  font-weight: 300;
+  font-size: 3rem;
+  color: var(--color-accent-gold);
+  margin: 10px 0;
 }
 
 .date-large {
-  text-shadow: 0 0 20px rgba(255, 255, 255, 1);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 6px;
+  color: var(--color-text-primary);
+  text-transform: uppercase;
+  margin-top: 20px;
 }
 
-/* Section Titles */
+/* Decorative Divider */
+.divider {
+  width: 1px;
+  height: 80px;
+  background-color: var(--color-accent-gold);
+  margin: 20px auto;
+  opacity: 0.5;
+}
+
+/* Event Section */
 .section-title {
   font-family: var(--font-script);
-  font-size: 3.2rem;
-  color: var(--color-green-olive);
-  margin-bottom: 50px;
-  font-weight: 300;
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+  font-size: 3.5rem;
+  color: var(--color-accent-gold);
+  margin-bottom: 5px;
 }
 
-/* Families Layout - Editorial Grid */
-.families-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 60px;
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.family-card {
-  background: transparent;
-  padding: 0;
-  transition: transform 0.5s ease, opacity 0.5s ease;
-  flex: 1;
-}
-
-.family-card:hover {
-  transform: translateY(-5px);
-}
-
-.family-name {
-  font-family: var(--font-heading);
-  font-size: 1.8rem;
-  color: var(--color-red-dahlia);
-  margin-bottom: 30px;
+.section-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
   letter-spacing: 4px;
   text-transform: uppercase;
-  font-weight: 300;
+  color: var(--color-text-secondary);
+  margin-bottom: 60px;
 }
 
-.family-details {
+.event-details {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
-}
-
-.house-name {
-  font-size: 1rem;
-  letter-spacing: 3px;
-  color: #666;
-  margin-bottom: 25px;
-  text-transform: uppercase;
-}
-
-.relation-script {
-  font-family: var(--font-script);
-  font-size: 1.8rem;
-  color: var(--color-green-olive);
-  margin: 15px 0;
-  font-weight: 300;
-}
-
-.parents, .grandparents {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.parent-name {
-  font-family: var(--font-heading);
-  font-size: 1.2rem;
-  color: #333;
-  margin-bottom: 5px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-.parent-title {
-  font-size: 0.8rem;
-  color: #777;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-/* Events Layout - Minimalist Cards */
-.events-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 80px;
-  width: 100%;
-}
-
-.minor-nikah-row {
-  max-width: 600px;
-  margin: 0 auto;
-  text-align: center;
-  padding: 10px 0;
-}
-
-.nikah-label {
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
-  color: var(--color-green-olive);
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  margin-bottom: 5px;
-}
-
-.nikah-details {
-  font-size: 0.9rem;
-  color: #666;
-  letter-spacing: 1px;
-}
-
-.main-event {
-  max-width: 800px;
-  margin: 0 auto;
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.05);
-  border-radius: 30px;
-  padding: 60px 20px;
-  width: 100%;
-}
-
-.main-event .event-title {
-  font-size: 2.2rem;
-  margin-bottom: 30px;
-  color: var(--color-red-dahlia);
-  font-weight: 300;
-  letter-spacing: 5px;
-}
-
-.main-event-content {
-  display: flex;
-  flex-direction: column;
   gap: 40px;
+  width: 100%;
+}
+
+.event-item {
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: 12px;
+}
+
+.event-label {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  color: var(--color-accent-gold);
+  text-transform: uppercase;
+}
+
+.event-value {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  color: var(--color-text-primary);
+}
+
+.event-subvalue {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  font-style: italic;
+}
+
+/* Event Hierarchy */
+.main-event {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.event-details-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  margin-top: 40px;
 }
 
 .event-detail-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 12px;
 }
 
-.detail-icon {
-  font-size: 1.5rem;
-  color: var(--color-green-olive);
-  background: rgba(255, 255, 255, 0.8);
-  width: 60px;
-  height: 60px;
+.event-icon {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 5px;
+  color: var(--color-accent-gold);
+}
+
+.event-value {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: var(--color-text-primary);
+  line-height: 1.6;
+}
+
+.event-detail-divider {
+  width: 50px;
+  height: 1px;
+  background-color: var(--color-accent-gold);
+  opacity: 0.3;
+}
+
+.minor-event-box {
+  margin-top: 80px;
+  padding: 30px 40px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  gap: 12px;
+  width: 100%;
+  max-width: 700px;
 }
 
-.event-detail-item h4 {
-  font-size: 0.85rem;
-  color: var(--color-green-olive);
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  margin: 0;
+.minor-event-label {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 5px;
+  color: var(--color-accent-maroon);
 }
 
-.event-detail-item p {
+.minor-event-text {
+  font-family: var(--font-serif);
   font-size: 1.1rem;
-  color: #444;
-  margin: 0;
-  font-weight: 300;
+  color: var(--color-text-secondary);
+  font-style: italic;
+  line-height: 1.6;
 }
 
-/* Countdown Timer Layout */
+.main-event-title {
+  font-family: var(--font-serif);
+  font-size: 3.2rem;
+  line-height: 1.1;
+
+  /* Stunning metallic text glaze effect */
+  background: linear-gradient(to right,
+      var(--color-accent-maroon) 30%,
+      var(--color-accent-gold) 45%,
+      #D4AF37 50%,
+      var(--color-accent-gold) 55%,
+      var(--color-accent-maroon) 70%);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shine-glaze 6s linear infinite;
+}
+
+/* Countdown */
 .countdown-box {
   display: flex;
-  flex-direction: row;
   justify-content: center;
-  align-items: center;
-  gap: 20px;
-  margin: 40px auto;
-  flex-wrap: wrap;
+  gap: 25px;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .time-unit {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: transparent;
-  min-width: 80px;
 }
 
 .time-value {
-  font-family: var(--font-heading);
-  font-size: 2.5rem;
-  color: var(--color-red-dahlia);
-  line-height: 1;
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  color: var(--color-text-primary);
 }
 
 .time-label {
-  font-family: var(--font-body);
-  font-size: 0.75rem;
+  font-family: var(--font-sans);
+  font-size: 0.6rem;
   letter-spacing: 3px;
-  color: #666;
-  margin-top: 5px;
   text-transform: uppercase;
+  color: var(--color-text-secondary);
+  margin-top: 8px;
 }
 
-/* Location Map Styles */
-.location-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 60px auto;
-  text-align: center;
-}
-
+/* Location Map */
 .qr-code-frame {
-  background: white;
+  margin: 30px auto;
   padding: 15px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  margin: 20px auto;
-  display: inline-block;
+  background: white;
+  border: 1px solid #F0F0F0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
 }
 
-.qr-code-frame img {
-  border-radius: 10px;
-}
-
-.location-scan-text {
-  font-size: 0.8rem;
-  letter-spacing: 3px;
-  color: #666;
-  text-transform: uppercase;
-}
-
-/* Footer Section */
+/* Footer */
 .footer-section {
-  padding: 60px 20px;
+  padding: 80px 30px 100px;
+  background-color: var(--color-bg);
   text-align: center;
-  background: transparent;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .footer-names {
-  font-size: 2.2rem; /* Fits on one line for mobile */
-}
-
-.footer-section h2 {
+  font-family: var(--font-serif);
   font-size: 2.5rem;
-  color: var(--color-red-dahlia);
-  letter-spacing: 4px;
-  margin-bottom: 20px;
+  color: var(--color-text-primary);
+  margin: 15px 0;
 }
 
-.footer-section p {
-  font-size: 1rem;
-  color: #666;
-  letter-spacing: 2px;
+/* Desktop Polish */
+@media (max-width: 600px) {
+  .name {
+    font-size: 2.2rem;
+  }
+
+  .footer-names {
+    font-size: 1.8rem;
+  }
+
+  .quote-arabic {
+    font-size: 2.5rem;
+  }
+
+  .quote-english {
+    font-size: 1.2rem;
+  }
+
+  .quote-section {
+    padding: 70px 20px;
+  }
+
+  .minor-event-box {
+    padding: 20px;
+  }
+
+  .event-value {
+    font-size: 1.1rem;
+  }
 }
 
-/* DESKTOP RESPONSIVE DESIGN */
 @media (min-width: 768px) {
-  .couple-names {
+  .family-container {
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    align-items: flex-start;
     gap: 40px;
+    padding: 80px 40px;
+    /* Fading vertical hairline divider down the center */
+    background-image: linear-gradient(to bottom, transparent 10%, rgba(188, 163, 127, 0.3) 20%, rgba(188, 163, 127, 0.3) 80%, transparent 90%);
+    background-position: center;
+    background-size: 1px 100%;
+    background-repeat: no-repeat;
   }
 
   .name {
     font-size: 4rem;
   }
-  
-  .ampersand {
-    font-size: 3rem;
+
+  .hero-section {
+    margin-top: -120px;
   }
 
-  .glass-card {
-    padding: 80px;
-  }
-
-  .families-grid {
+  .event-details-grid {
     flex-direction: row;
-    justify-content: space-between;
-    gap: 80px;
+    gap: 60px;
+    align-items: stretch;
   }
 
-  .families-grid>div {
-    flex: 1;
-  }
-
-  .main-event-content {
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: flex-start;
-  }
-
-  .main-event {
-    padding: 80px 60px;
-  }
-  
-  .main-event .event-title {
-    font-size: 4rem;
-    margin-bottom: 50px;
+  .event-detail-divider {
+    width: 1px;
+    height: auto;
   }
 }
