@@ -20,13 +20,14 @@
   box-sizing: border-box;
 }
 
-body {
+html, body {
   font-family: var(--font-body);
   background-color: var(--color-cream);
   color: #333333;
   line-height: 1.6;
   overflow-x: hidden;
   scroll-behavior: smooth;
+  width: 100%;
 }
 
 #root {
