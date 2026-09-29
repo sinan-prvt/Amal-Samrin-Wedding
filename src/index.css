@@ -7,8 +7,9 @@
   --color-green-olive: #828a50;
   --color-gold: #d4af37;
   --color-gold-light: #f3e5ab;
-  --color-text: #f9f6f0; /* Light text for dark bg */
-  
+  --color-text: #f9f6f0;
+  /* Light text for dark bg */
+
   --font-heading: 'Cinzel', serif;
   --font-body: 'Outfit', sans-serif;
   --font-script: 'Great Vibes', cursive;
@@ -20,7 +21,8 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   font-family: var(--font-body);
   background-color: var(--color-cream);
   color: #333333;
@@ -35,10 +37,15 @@ html, body {
   min-height: 100vh;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
   font-weight: 400;
-  color: var(--color-red-dahlia); 
+  color: var(--color-red-dahlia);
 }
 
 .script-font {

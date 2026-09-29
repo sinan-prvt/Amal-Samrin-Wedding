@@ -41,22 +41,22 @@ const CountdownTimer = () => {
   });
 
   return (
-    <motion.div variants={fadeUpVariant} style={{ display: 'flex', gap: 'clamp(8px, 2vw, 25px)', alignItems: 'center' }}>
+    <motion.div variants={fadeUpVariant} style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.4rem, 6vw, 2rem)', fontStyle: 'italic', color: 'var(--color-green-olive)', marginBottom: '5px' }}>{timeLeft.days !== undefined ? String(timeLeft.days).padStart(2, '0') : '00'}</div>
-        <div style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(0.45rem, 2vw, 0.55rem)', letterSpacing: '2px', color: 'var(--color-green-olive)' }}>DAYS</div>
+        <div style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', fontStyle: 'italic', color: 'var(--color-green-olive)', marginBottom: '5px' }}>{timeLeft.days !== undefined ? String(timeLeft.days).padStart(2, '0') : '00'}</div>
+        <div style={{ fontFamily: 'var(--font-serif)', fontSize: '0.55rem', letterSpacing: '2px', color: 'var(--color-green-olive)' }}>DAYS</div>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.4rem, 6vw, 2rem)', fontStyle: 'italic', color: 'var(--color-green-olive)', marginBottom: '5px' }}>{timeLeft.hours !== undefined ? String(timeLeft.hours).padStart(2, '0') : '00'}</div>
-        <div style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(0.45rem, 2vw, 0.55rem)', letterSpacing: '2px', color: 'var(--color-green-olive)' }}>HOURS</div>
+        <div style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', fontStyle: 'italic', color: 'var(--color-green-olive)', marginBottom: '5px' }}>{timeLeft.hours !== undefined ? String(timeLeft.hours).padStart(2, '0') : '00'}</div>
+        <div style={{ fontFamily: 'var(--font-serif)', fontSize: '0.55rem', letterSpacing: '2px', color: 'var(--color-green-olive)' }}>HOURS</div>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.4rem, 6vw, 2rem)', fontStyle: 'italic', color: 'var(--color-green-olive)', marginBottom: '5px' }}>{timeLeft.minutes !== undefined ? String(timeLeft.minutes).padStart(2, '0') : '00'}</div>
-        <div style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(0.45rem, 2vw, 0.55rem)', letterSpacing: '2px', color: 'var(--color-green-olive)' }}>MINUTES</div>
+        <div style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', fontStyle: 'italic', color: 'var(--color-green-olive)', marginBottom: '5px' }}>{timeLeft.minutes !== undefined ? String(timeLeft.minutes).padStart(2, '0') : '00'}</div>
+        <div style={{ fontFamily: 'var(--font-serif)', fontSize: '0.55rem', letterSpacing: '2px', color: 'var(--color-green-olive)' }}>MINUTES</div>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.4rem, 6vw, 2rem)', fontStyle: 'italic', color: 'var(--color-green-olive)', marginBottom: '5px' }}>{timeLeft.seconds !== undefined ? String(timeLeft.seconds).padStart(2, '0') : '00'}</div>
-        <div style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(0.45rem, 2vw, 0.55rem)', letterSpacing: '2px', color: 'var(--color-green-olive)' }}>SECONDS</div>
+        <div style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', fontStyle: 'italic', color: 'var(--color-green-olive)', marginBottom: '5px' }}>{timeLeft.seconds !== undefined ? String(timeLeft.seconds).padStart(2, '0') : '00'}</div>
+        <div style={{ fontFamily: 'var(--font-serif)', fontSize: '0.55rem', letterSpacing: '2px', color: 'var(--color-green-olive)' }}>SECONDS</div>
       </div>
     </motion.div>
   );
@@ -152,10 +152,10 @@ function App() {
                   A <span style={{ fontFamily: 'var(--font-script)', fontSize: '2rem', fontStyle: 'italic', margin: '0 5px', color: 'var(--color-text-primary)' }}>&</span> S
                 </motion.div>
 
-                <motion.div variants={fadeUpVariant} className="couple-names" style={{ marginBottom: '20px', flexDirection: 'row', alignItems: 'center', gap: '15px', width: '100%', justifyContent: 'center' }}>
-                  <h1 className="name" style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2rem, 7vw, 3rem)', fontWeight: 600, color: 'var(--color-text-primary)', margin: 0, background: 'none', WebkitTextFillColor: 'initial', animation: 'none', textTransform: 'capitalize', letterSpacing: '2px' }}>Amal</h1>
-                  <span className="ampersand" style={{ fontFamily: 'var(--font-script)', fontSize: 'clamp(2rem, 6vw, 3rem)', color: 'var(--color-text-secondary)', margin: 0 }}>&</span>
-                  <h1 className="name" style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2rem, 7vw, 3rem)', fontWeight: 600, color: 'var(--color-text-primary)', margin: 0, background: 'none', WebkitTextFillColor: 'initial', animation: 'none', textTransform: 'capitalize', letterSpacing: '2px' }}>Samrin</h1>
+                <motion.div variants={fadeUpVariant} className="couple-names" style={{ marginBottom: '20px', flexDirection: 'row', alignItems: 'center', gap: '10px', width: '100%', justifyContent: 'center' }}>
+                  <h1 className="name" style={{ fontFamily: 'var(--font-script)', fontSize: 'clamp(2.2rem, 8vw, 3.5rem)', fontWeight: 400, color: 'var(--color-text-primary)', margin: 0, background: 'none', WebkitTextFillColor: 'initial', animation: 'none', textTransform: 'capitalize' }}>Amal</h1>
+                  <span className="ampersand" style={{ fontFamily: 'var(--font-script)', fontSize: 'clamp(1.5rem, 5vw, 2.5rem)', color: 'var(--color-text-secondary)', margin: 0 }}>&</span>
+                  <h1 className="name" style={{ fontFamily: 'var(--font-script)', fontSize: 'clamp(2.2rem, 8vw, 3.5rem)', fontWeight: 400, color: 'var(--color-text-primary)', margin: 0, background: 'none', WebkitTextFillColor: 'initial', animation: 'none', textTransform: 'capitalize' }}>Samrin</h1>
                 </motion.div>
 
                 <motion.div variants={fadeUpVariant} style={{ fontFamily: 'var(--font-serif)', fontSize: '0.65rem', letterSpacing: '4px', textTransform: 'uppercase', color: 'var(--color-text-primary)', textAlign: 'center', lineHeight: '2', marginBottom: '25px', maxWidth: '500px' }}>
@@ -252,7 +252,7 @@ function App() {
                 <motion.div variants={fadeUpVariant} style={{ position: 'relative', width: '90%', maxWidth: '450px', backgroundColor: '#F4F1E8', borderRadius: '25px', padding: '50px 30px', boxShadow: '0 10px 40px rgba(0, 0, 0, 0.05)', border: '1px solid rgba(130, 138, 80, 0.15)', display: 'flex', flexDirection: 'column', alignItems: 'center', zIndex: 10 }}>
                   <img src="/floral-top-left.png" alt="" style={{ position: 'absolute', top: '-40px', left: '-40px', width: '160px', pointerEvents: 'none', mixBlendMode: 'multiply' }} />
 
-                  <div style={{ fontFamily: 'var(--font-script)', fontSize: '2.5rem', color: 'var(--color-text-primary)', marginBottom: '5px' }}>Amal Ammattikas</div>
+                  <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.8rem', fontWeight: 600, color: 'var(--color-text-primary)', marginBottom: '5px', letterSpacing: '1px' }}>Amal Ammattikas</div>
                   <div style={{ fontFamily: 'var(--font-serif)', fontSize: '0.65rem', letterSpacing: '4px', textTransform: 'uppercase', color: 'var(--color-text-secondary)', marginBottom: '30px' }}>Ammattikas House</div>
 
                   <div style={{ fontFamily: 'var(--font-serif)', fontSize: '0.85rem', color: 'var(--color-text-primary)', textAlign: 'center', lineHeight: '2' }}>
@@ -268,7 +268,7 @@ function App() {
                 <motion.div variants={fadeUpVariant} style={{ position: 'relative', width: '90%', maxWidth: '450px', backgroundColor: '#F4F1E8', borderRadius: '25px', padding: '50px 30px', boxShadow: '0 10px 40px rgba(0, 0, 0, 0.05)', border: '1px solid rgba(130, 138, 80, 0.15)', display: 'flex', flexDirection: 'column', alignItems: 'center', zIndex: 10 }}>
                   <img src="/floral-drapes-tr.png" alt="" style={{ position: 'absolute', top: '-40px', right: '-40px', width: '180px', pointerEvents: 'none', mixBlendMode: 'multiply' }} />
 
-                  <div style={{ fontFamily: 'var(--font-script)', fontSize: '2.5rem', color: 'var(--color-text-primary)', marginBottom: '5px', position: 'relative', zIndex: 2 }}>Fathima Samrin</div>
+                  <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.8rem', fontWeight: 600, color: 'var(--color-text-primary)', marginBottom: '5px', position: 'relative', zIndex: 2, letterSpacing: '1px' }}>Fathima Samrin</div>
                   <div style={{ fontFamily: 'var(--font-serif)', fontSize: '0.65rem', letterSpacing: '4px', textTransform: 'uppercase', color: 'var(--color-text-secondary)', marginBottom: '30px', position: 'relative', zIndex: 2 }}>Vadakanethil (Excel)</div>
 
                   <div style={{ fontFamily: 'var(--font-serif)', fontSize: '0.85rem', color: 'var(--color-text-primary)', textAlign: 'center', lineHeight: '2', position: 'relative', zIndex: 2 }}>
