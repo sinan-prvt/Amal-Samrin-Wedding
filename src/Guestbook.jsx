@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { Heart } from 'lucide-react';
 
 const Guestbook = () => {
   const [name, setName] = useState('');
@@ -68,6 +69,26 @@ const Guestbook = () => {
     }
   };
 
+  const handleLike = async (id) => {
+    // Optimistically update
+    setComments(prev => prev.map(c => {
+      if (c.id === id && !c.hasLiked) {
+        return { ...c, likes: (c.likes || 0) + 1, hasLiked: true };
+      }
+      return c;
+    }));
+
+    try {
+      await fetch('/api/like', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id }),
+      });
+    } catch (error) {
+      console.error('Failed to like comment:', error);
+    }
+  };
+
   const fadeUpVariant = {
     hidden: { opacity: 0, y: 30 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
@@ -114,7 +135,16 @@ const Guestbook = () => {
             <div key={comment.id} style={{ backgroundColor: '#fff', padding: '20px', borderRadius: '20px', boxShadow: '0 4px 15px rgba(0,0,0,0.02)', border: '1px solid rgba(0,0,0,0.03)' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
                 <div style={{ fontFamily: 'var(--font-serif)', fontWeight: 'bold', color: 'var(--color-text-primary)' }}>{comment.name}</div>
-                <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.7rem', color: '#999' }}>{comment.date}</div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+                  <button 
+                    onClick={() => handleLike(comment.id)}
+                    style={{ background: 'none', border: 'none', cursor: comment.hasLiked ? 'default' : 'pointer', display: 'flex', alignItems: 'center', gap: '4px', color: (comment.likes > 0 || comment.hasLiked) ? 'var(--color-red-dahlia)' : '#999', padding: 0, transition: 'all 0.2s ease' }}
+                  >
+                    <Heart size={14} fill={(comment.likes > 0 || comment.hasLiked) ? 'var(--color-red-dahlia)' : 'none'} strokeWidth={2.5} />
+                    <span style={{ fontSize: '0.75rem', fontFamily: 'var(--font-sans)', fontWeight: '500' }}>{comment.likes || 0}</span>
+                  </button>
+                  <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.7rem', color: '#999' }}>{comment.date}</div>
+                </div>
               </div>
               <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9rem', color: 'var(--color-text-secondary)', lineHeight: '1.5' }}>
                 {comment.text}
