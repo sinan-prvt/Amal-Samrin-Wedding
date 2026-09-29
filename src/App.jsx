@@ -152,10 +152,10 @@ function App() {
                   A <span style={{ fontFamily: 'var(--font-script)', fontSize: '2rem', fontStyle: 'italic', margin: '0 5px', color: 'var(--color-text-primary)' }}>&</span> S
                 </motion.div>
 
-                <motion.div variants={fadeUpVariant} className="couple-names" style={{ marginBottom: '20px', flexDirection: 'row', alignItems: 'center', gap: '10px', width: '100%', justifyContent: 'center' }}>
-                  <h1 className="name" style={{ fontFamily: 'var(--font-script)', fontSize: 'clamp(2.2rem, 8vw, 3.5rem)', fontWeight: 400, color: 'var(--color-text-primary)', margin: 0, background: 'none', WebkitTextFillColor: 'initial', animation: 'none', textTransform: 'capitalize' }}>Amal</h1>
-                  <span className="ampersand" style={{ fontFamily: 'var(--font-script)', fontSize: 'clamp(1.5rem, 5vw, 2.5rem)', color: 'var(--color-text-secondary)', margin: 0 }}>&</span>
-                  <h1 className="name" style={{ fontFamily: 'var(--font-script)', fontSize: 'clamp(2.2rem, 8vw, 3.5rem)', fontWeight: 400, color: 'var(--color-text-primary)', margin: 0, background: 'none', WebkitTextFillColor: 'initial', animation: 'none', textTransform: 'capitalize' }}>Samrin</h1>
+                <motion.div variants={fadeUpVariant} className="couple-names" style={{ marginBottom: '20px', flexDirection: 'row', alignItems: 'center', gap: '15px', width: '100%', justifyContent: 'center' }}>
+                  <h1 className="name" style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2rem, 7vw, 3rem)', fontWeight: 600, color: 'var(--color-text-primary)', margin: 0, background: 'none', WebkitTextFillColor: 'initial', animation: 'none', textTransform: 'capitalize', letterSpacing: '2px' }}>Amal</h1>
+                  <span className="ampersand" style={{ fontFamily: 'var(--font-script)', fontSize: 'clamp(2rem, 6vw, 3rem)', color: 'var(--color-text-secondary)', margin: 0 }}>&</span>
+                  <h1 className="name" style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2rem, 7vw, 3rem)', fontWeight: 600, color: 'var(--color-text-primary)', margin: 0, background: 'none', WebkitTextFillColor: 'initial', animation: 'none', textTransform: 'capitalize', letterSpacing: '2px' }}>Samrin</h1>
                 </motion.div>
 
                 <motion.div variants={fadeUpVariant} style={{ fontFamily: 'var(--font-serif)', fontSize: '0.65rem', letterSpacing: '4px', textTransform: 'uppercase', color: 'var(--color-text-primary)', textAlign: 'center', lineHeight: '2', marginBottom: '25px', maxWidth: '500px' }}>
