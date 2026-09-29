@@ -136,11 +136,11 @@ function App() {
             className="content-wrapper"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
           >
             {/* Main Invite Section */}
             {/* Main Invite Section */}
-            <section className="invite-section hero-section" style={{ paddingTop: '28vh', paddingBottom: '15vh', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <section className="invite-section hero-section" style={{ paddingTop: 'clamp(10vh, 15vw, 28vh)', paddingBottom: '15vh', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
               <motion.div
                 initial="hidden"
                 animate="visible"

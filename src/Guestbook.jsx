@@ -12,19 +12,26 @@ const Guestbook = () => {
       try {
         const response = await fetch('/api/comments');
         if (response.ok) {
-          const data = await response.json();
-          if (data && data.length > 0) {
-            setComments(data);
-          } else {
-            setComments([
-              { id: 1, name: 'Aisha', text: 'Wishing you both a lifetime of love and happiness!', date: 'Just now' },
-              { id: 2, name: 'Rahul & Family', text: 'Cannot wait to celebrate this beautiful day with you.', date: '1 hr ago' }
-            ]);
+          const text = await response.text();
+          try {
+            const data = JSON.parse(text);
+            if (Array.isArray(data) && data.length > 0) {
+              setComments(data);
+              return;
+            }
+          } catch (e) {
+            console.warn('Running locally (API not executed). Falling back to mock comments.');
           }
         }
       } catch (error) {
         console.error('Failed to load comments:', error);
       }
+      
+      // Fallback for local development or empty DB
+      setComments([
+        { id: 1, name: 'Aisha', text: 'Wishing you both a lifetime of love and happiness!', date: 'Just now' },
+        { id: 2, name: 'Rahul & Family', text: 'Cannot wait to celebrate this beautiful day with you.', date: '1 hr ago' }
+      ]);
     };
     
     fetchComments();

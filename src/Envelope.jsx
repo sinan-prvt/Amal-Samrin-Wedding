@@ -9,11 +9,12 @@ const WelcomeScreen = ({ onOpen }) => {
   const handleOpen = () => {
     if (isOpen) return;
     setIsOpen(true);
-    // Give time for the gatefold to slide open fully (1.5s)
+    if (onOpen) onOpen(); // Call instantly so music starts immediately!
+    
+    // Give time for the gatefold to slide open fully
     setTimeout(() => {
       setIsHidden(true);
-      if (onOpen) onOpen();
-    }, 1500);
+    }, 800);
   };
 
   if (isHidden) return null;
