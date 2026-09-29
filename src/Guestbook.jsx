@@ -6,6 +6,7 @@ const Guestbook = () => {
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
   const [comments, setComments] = useState([]);
+  const [isLocalMode, setIsLocalMode] = useState(false);
 
   useEffect(() => {
     // Fetch comments from Vercel Serverless Function
@@ -22,16 +23,20 @@ const Guestbook = () => {
             }
           } catch (e) {
             console.warn('Running locally (API not executed). Falling back to mock comments.');
+            setIsLocalMode(true);
           }
+        } else {
+          setIsLocalMode(true);
         }
       } catch (error) {
         console.error('Failed to load comments:', error);
+        setIsLocalMode(true);
       }
       
       // Fallback for local development or empty DB
       setComments([
-        { id: 1, name: 'Aisha', text: 'Wishing you both a lifetime of love and happiness!', date: 'Just now' },
-        { id: 2, name: 'Rahul & Family', text: 'Cannot wait to celebrate this beautiful day with you.', date: '1 hr ago' }
+        { id: 1, name: 'Aisha', text: 'Wishing you both a lifetime of love and happiness!', date: 'Just now', likes: 1, hasLiked: true },
+        { id: 2, name: 'Rahul & Family', text: 'Cannot wait to celebrate this beautiful day with you.', date: '1 hr ago', likes: 0 }
       ]);
     };
     
@@ -46,7 +51,8 @@ const Guestbook = () => {
       id: Date.now(),
       name: name.trim(),
       text: message.trim(),
-      date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+      date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+      likes: 0
     };
 
     // Optimistically update the UI
@@ -55,17 +61,17 @@ const Guestbook = () => {
     setName('');
     setMessage('');
 
+    if (isLocalMode) return; // Prevent 404 errors locally
+
     // Save to Vercel KV Database
     try {
       await fetch('/api/comments', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newComment),
       });
     } catch (error) {
-      console.error('Failed to save comment:', error);
+      console.warn('Failed to save comment remotely.');
     }
   };
 
@@ -78,6 +84,8 @@ const Guestbook = () => {
       return c;
     }));
 
+    if (isLocalMode) return; // Prevent 404 errors locally
+
     try {
       await fetch('/api/like', {
         method: 'POST',
@@ -85,7 +93,7 @@ const Guestbook = () => {
         body: JSON.stringify({ id }),
       });
     } catch (error) {
-      console.error('Failed to like comment:', error);
+      console.warn('Failed to like comment remotely.');
     }
   };
 
