@@ -41,22 +41,22 @@ const CountdownTimer = () => {
   });
 
   return (
-    <motion.div variants={fadeUpVariant} style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
+    <motion.div variants={fadeUpVariant} style={{ display: 'flex', gap: 'clamp(8px, 2vw, 25px)', alignItems: 'center' }}>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', fontStyle: 'italic', color: 'var(--color-green-olive)', marginBottom: '5px' }}>{timeLeft.days !== undefined ? String(timeLeft.days).padStart(2, '0') : '00'}</div>
-        <div style={{ fontFamily: 'var(--font-serif)', fontSize: '0.55rem', letterSpacing: '2px', color: 'var(--color-green-olive)' }}>DAYS</div>
+        <div style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.4rem, 6vw, 2rem)', fontStyle: 'italic', color: 'var(--color-green-olive)', marginBottom: '5px' }}>{timeLeft.days !== undefined ? String(timeLeft.days).padStart(2, '0') : '00'}</div>
+        <div style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(0.45rem, 2vw, 0.55rem)', letterSpacing: '2px', color: 'var(--color-green-olive)' }}>DAYS</div>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', fontStyle: 'italic', color: 'var(--color-green-olive)', marginBottom: '5px' }}>{timeLeft.hours !== undefined ? String(timeLeft.hours).padStart(2, '0') : '00'}</div>
-        <div style={{ fontFamily: 'var(--font-serif)', fontSize: '0.55rem', letterSpacing: '2px', color: 'var(--color-green-olive)' }}>HOURS</div>
+        <div style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.4rem, 6vw, 2rem)', fontStyle: 'italic', color: 'var(--color-green-olive)', marginBottom: '5px' }}>{timeLeft.hours !== undefined ? String(timeLeft.hours).padStart(2, '0') : '00'}</div>
+        <div style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(0.45rem, 2vw, 0.55rem)', letterSpacing: '2px', color: 'var(--color-green-olive)' }}>HOURS</div>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', fontStyle: 'italic', color: 'var(--color-green-olive)', marginBottom: '5px' }}>{timeLeft.minutes !== undefined ? String(timeLeft.minutes).padStart(2, '0') : '00'}</div>
-        <div style={{ fontFamily: 'var(--font-serif)', fontSize: '0.55rem', letterSpacing: '2px', color: 'var(--color-green-olive)' }}>MINUTES</div>
+        <div style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.4rem, 6vw, 2rem)', fontStyle: 'italic', color: 'var(--color-green-olive)', marginBottom: '5px' }}>{timeLeft.minutes !== undefined ? String(timeLeft.minutes).padStart(2, '0') : '00'}</div>
+        <div style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(0.45rem, 2vw, 0.55rem)', letterSpacing: '2px', color: 'var(--color-green-olive)' }}>MINUTES</div>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', fontStyle: 'italic', color: 'var(--color-green-olive)', marginBottom: '5px' }}>{timeLeft.seconds !== undefined ? String(timeLeft.seconds).padStart(2, '0') : '00'}</div>
-        <div style={{ fontFamily: 'var(--font-serif)', fontSize: '0.55rem', letterSpacing: '2px', color: 'var(--color-green-olive)' }}>SECONDS</div>
+        <div style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.4rem, 6vw, 2rem)', fontStyle: 'italic', color: 'var(--color-green-olive)', marginBottom: '5px' }}>{timeLeft.seconds !== undefined ? String(timeLeft.seconds).padStart(2, '0') : '00'}</div>
+        <div style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(0.45rem, 2vw, 0.55rem)', letterSpacing: '2px', color: 'var(--color-green-olive)' }}>SECONDS</div>
       </div>
     </motion.div>
   );
