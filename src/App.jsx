@@ -4,10 +4,9 @@ import Envelope from './Envelope';
 import MusicPlayer from './MusicPlayer';
 import CursorTrail from './CursorTrail';
 import Guestbook from './Guestbook';
-import EarthScene from './EarthScene';
+import RoyalScene from './RoyalScene';
 import {
-  useSmoothScroll, ScrollProgress, ParallaxPhoto, ScrollRevealText,
-  Marquee, HorizontalGallery, useHeroScroll,
+  useSmoothScroll, ScrollProgress, ScrollRevealText, Marquee, useHeroScroll,
 } from './ScrollFx';
 import './App.css';
 
@@ -129,45 +128,34 @@ const FallingPetals = () => {
   );
 };
 
-/* Drop real photos into public/photos/ with these names — missing ones show a soft placeholder */
-const GALLERY = [
-  { src: '/photos/gallery-1.jpg', alt: 'Amal and Samrin', tone: 'dahlia', label: 'gallery-1.jpg', caption: 'The beginning' },
-  { src: '/photos/gallery-2.jpg', alt: 'Amal and Samrin', tone: 'olive', label: 'gallery-2.jpg', caption: 'Together' },
-  { src: '/photos/gallery-3.jpg', alt: 'Amal and Samrin', tone: 'sand', label: 'gallery-3.jpg', caption: 'Promises' },
-  { src: '/photos/gallery-4.jpg', alt: 'Amal and Samrin', tone: 'dahlia', label: 'gallery-4.jpg', caption: 'Forever' },
-  { src: '/photos/gallery-5.jpg', alt: 'Amal and Samrin', tone: 'olive', label: 'gallery-5.jpg', caption: 'Our day' },
-];
-
-const HeroArtwork = () => {
-  const [hasPhoto, setHasPhoto] = useState(true);
-  if (!hasPhoto) return <EarthScene />;
-  return <img src="/photos/hero.jpg" alt="Amal and Samrin" className="hero-photo" onError={() => setHasPhoto(false)} />;
-};
-
 const Hero = () => {
   const heroRef = useRef(null);
-  const { archY, archScale, fade } = useHeroScroll(heroRef);
+  const { sceneY, sceneScale, fade, contentY } = useHeroScroll(heroRef);
   return (
     <section className="hero" ref={heroRef}>
-      <div className="hero-grain" aria-hidden="true" />
+      <motion.div className="hero-scene" style={{ y: sceneY, scale: sceneScale }}>
+        <motion.div
+          className="hero-scene-zoom"
+          initial={{ scale: 1.12, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 2.4, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <RoyalScene />
+        </motion.div>
+      </motion.div>
+      <div className="hero-veil" aria-hidden="true" />
+
       <motion.div
         className="hero-inner"
         initial="hidden"
         animate="visible"
         variants={staggerContainer}
+        style={{ opacity: fade, y: contentY }}
       >
-        <motion.div variants={fadeUpVariant} className="eyebrow eyebrow--light">
+        <motion.div variants={fadeUpVariant} className="eyebrow eyebrow--gold">
           The Wedding Of
         </motion.div>
 
-        <motion.div variants={fadeUpVariant} className="hero-arch" style={{ y: archY, scale: archScale }}>
-          <HeroArtwork />
-          <div className="hero-monogram">
-            A<span>&amp;</span>S
-          </div>
-        </motion.div>
-
-        <motion.div style={{ opacity: fade }} className="hero-fade">
         <motion.h1 variants={fadeUpVariant} className="hero-names">
           <span>Amal</span>
           <em className="hero-amp">&amp;</em>
@@ -185,15 +173,12 @@ const Hero = () => {
         </motion.div>
 
         <motion.div variants={fadeUpVariant} className="hero-venue">
-          <span className="eyebrow eyebrow--light">To be held at</span>
+          <span className="eyebrow eyebrow--gold">To be held at</span>
           <span className="hero-venue-name">Malhar Bhoomi</span>
         </motion.div>
-
-        <motion.div variants={fadeUpVariant} className="scroll-cue" aria-hidden="true">
-          <span />
-        </motion.div>
-        </motion.div>
       </motion.div>
+
+      <div className="scroll-cue" aria-hidden="true"><span /></div>
     </section>
   );
 };
@@ -324,17 +309,6 @@ function App() {
                 </div>
               </motion.div>
             </section>
-
-            {/* ─── Full-bleed parallax photo ─── */}
-            <section className="photo-band">
-              <ParallaxPhoto src="/photos/couple.jpg" alt="Amal and Samrin" tone="wine" label="couple.jpg" strength={90} />
-              <div className="photo-band-caption">
-                <div className="eyebrow eyebrow--light">Two hearts · One journey</div>
-              </div>
-            </section>
-
-            {/* ─── Horizontal gallery ─── */}
-            <HorizontalGallery photos={GALLERY} title={<>Our <em>Story</em></>} />
 
             {/* ─── Events ─── */}
             <section className="events-section">
