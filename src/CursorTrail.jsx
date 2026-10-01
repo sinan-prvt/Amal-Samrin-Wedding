@@ -53,10 +53,10 @@ const CursorTrail = () => {
             top: p.y,
             width: p.size,
             height: p.size,
-            backgroundColor: '#D4AF37',
+            backgroundColor: '#b7895f',
             borderRadius: '50%',
             animation: `gold-dust-anim ${p.duration}s ease-out forwards`,
-            boxShadow: '0 0 8px rgba(212, 175, 55, 0.8)',
+            boxShadow: '0 0 8px rgba(122, 31, 43, 0.35)',
             '--x-drift': `${p.xOffset}px`,
             '--y-drift': `${p.yOffset}px`
           }}
