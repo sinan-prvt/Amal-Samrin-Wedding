@@ -141,30 +141,32 @@ const Hero = () => {
         variants={staggerContainer}
         style={{ opacity: fade, y: contentY }}
       >
-        <motion.div variants={fadeUpVariant} className="eyebrow eyebrow--hero">
-          The Wedding Of
-        </motion.div>
+        <div className="hero-card">
+          <motion.div variants={fadeUpVariant} className="eyebrow eyebrow--hero">
+            The Wedding Of
+          </motion.div>
 
-        <motion.h1 variants={fadeUpVariant} className="hero-names">
-          <span>Amal</span>
-          <em className="hero-amp">&amp;</em>
-          <span>Samrin</span>
-        </motion.h1>
+          <motion.h1 variants={fadeUpVariant} className="hero-names">
+            <span>Amal</span>
+            <em className="hero-amp">&amp;</em>
+            <span>Samrin</span>
+          </motion.h1>
 
-        <motion.p variants={fadeUpVariant} className="hero-request">
-          We request the pleasure of your company<br />to celebrate our wedding on
-        </motion.p>
+          <motion.p variants={fadeUpVariant} className="hero-request">
+            We request the pleasure of your company<br />to celebrate our wedding on
+          </motion.p>
 
-        <motion.div variants={fadeUpVariant} className="hero-date">
-          <span className="hero-date-side">Thursday</span>
-          <span className="hero-date-main">24 · 12 · 2026</span>
-          <span className="hero-date-side">Six O'Clock</span>
-        </motion.div>
+          <motion.div variants={fadeUpVariant} className="hero-date">
+            <span className="hero-date-side">Thursday</span>
+            <span className="hero-date-main">24 · 12 · 2026</span>
+            <span className="hero-date-side">Six O'Clock</span>
+          </motion.div>
 
-        <motion.div variants={fadeUpVariant} className="hero-venue">
-          <span className="eyebrow eyebrow--hero">To be held at</span>
-          <span className="hero-venue-name">Malhar Bhoomi</span>
-        </motion.div>
+          <motion.div variants={fadeUpVariant} className="hero-venue">
+            <span className="eyebrow eyebrow--hero">To be held at</span>
+            <span className="hero-venue-name">Malhar Bhoomi</span>
+          </motion.div>
+        </div>
       </motion.div>
 
       <div className="scroll-cue" aria-hidden="true"><span /></div>
