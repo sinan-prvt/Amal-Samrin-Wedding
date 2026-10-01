@@ -303,7 +303,6 @@ function App() {
 
             {/* ─── Events ─── */}
             <section className="events-section">
-              <img src="/reception-night.webp" alt="" className="events-bg" loading="lazy" decoding="async" />
               <motion.div
                 initial="hidden"
                 whileInView="visible"
