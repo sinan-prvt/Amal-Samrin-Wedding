@@ -1,3 +1,6 @@
+/* Source artwork for public/royal-stage.jpg (the hero image).
+   Not rendered live: the hero uses the pre-rendered JPG for smooth scrolling.
+   To regenerate, render this component at 1600x1000 and screenshot it at 1.5x. */
 import React from 'react';
 
 /* Royal stage illustration for the landing hero:

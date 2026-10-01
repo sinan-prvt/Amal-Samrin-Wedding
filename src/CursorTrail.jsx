@@ -8,10 +8,13 @@ const CursorTrail = () => {
     if (window.innerWidth < 768) return;
 
     let particleId = 0;
-    
+    let last = 0;
+
     const handleMouseMove = (e) => {
-      // Throttle spawn rate for elegance
-      if (Math.random() > 0.4) return; 
+      // Throttle by time so fast mouse moves don't flood React with updates
+      const now = performance.now();
+      if (now - last < 70) return;
+      last = now;
       
       const newParticle = {
         id: particleId++,
@@ -23,14 +26,14 @@ const CursorTrail = () => {
         yOffset: Math.random() * 30 + 10,    // Drift downwards like falling dust
       };
 
-      setParticles((prev) => [...prev.slice(-20), newParticle]);
+      setParticles((prev) => [...prev.slice(-10), newParticle]);
       
       setTimeout(() => {
         setParticles((prev) => prev.filter(p => p.id !== newParticle.id));
       }, newParticle.duration * 1000);
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 

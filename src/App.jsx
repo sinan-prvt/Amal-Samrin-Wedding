@@ -4,7 +4,6 @@ import Envelope from './Envelope';
 import MusicPlayer from './MusicPlayer';
 import CursorTrail from './CursorTrail';
 import Guestbook from './Guestbook';
-import RoyalScene from './RoyalScene';
 import {
   useSmoothScroll, ScrollProgress, ScrollRevealText, Marquee, useHeroScroll,
 } from './ScrollFx';
@@ -76,71 +75,61 @@ const CountdownTimer = () => {
   );
 };
 
+const PETAL_COLORS = ['#7a1f2b', '#8a8a4e', '#7a1f2b', '#e3d4b8'];
+
+/* CSS-only petals: animated on the compositor, no per-frame JavaScript */
 const FallingPetals = () => {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => { setMounted(true); }, []);
-
-  if (!mounted) return null;
-
-  const colors = ['#7a1f2b', '#8a8a4e', '#7a1f2b', '#e3d4b8'];
-  const petals = Array.from({ length: 14 });
+  const [petals] = useState(() =>
+    Array.from({ length: 10 }, (_, i) => ({
+      left: Math.random() * 100,
+      duration: 16 + Math.random() * 18,
+      delay: Math.random() * -30,
+      size: 8 + Math.random() * 10,
+      sway: (Math.random() > 0.5 ? 1 : -1) * (30 + Math.random() * 40),
+      color: PETAL_COLORS[i % PETAL_COLORS.length],
+      soft: Math.random() > 0.5,
+    }))
+  );
   return (
-    <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', pointerEvents: 'none', zIndex: 999, overflow: 'hidden' }}>
-      {petals.map((_, i) => {
-        const left = Math.random() * 100;
-        const animDuration = 15 + Math.random() * 20;
-        const delay = Math.random() * -20;
-        const size = 8 + Math.random() * 12;
-        const isBlurred = Math.random() > 0.5;
-
-        return (
-          <motion.div
-            key={i}
-            initial={{ y: -50, x: 0, rotate: 0, opacity: 0 }}
-            animate={{
-              y: '100vh',
-              x: [0, 60, -60, 0],
-              rotate: 360,
-              opacity: [0, 0.55, 0.55, 0]
-            }}
-            transition={{
-              duration: animDuration,
-              delay: delay,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-            style={{
-              position: 'absolute',
-              left: `${left}%`,
-              width: size,
-              height: size * 1.2,
-              backgroundColor: colors[i % colors.length],
-              borderTopLeftRadius: '50%',
-              borderBottomRightRadius: '50%',
-              borderTopRightRadius: '2px',
-              borderBottomLeftRadius: '2px',
-              filter: isBlurred ? 'blur(3px)' : 'blur(0.5px)',
-            }}
-          />
-        );
-      })}
+    <div className="petals" aria-hidden="true">
+      {petals.map((p, i) => (
+        <span
+          key={i}
+          className={`petal ${p.soft ? 'petal--soft' : ''}`}
+          style={{
+            left: `${p.left}%`,
+            width: p.size,
+            height: p.size * 1.2,
+            backgroundColor: p.color,
+            animationDuration: `${p.duration}s`,
+            animationDelay: `${p.delay}s`,
+            '--sway': `${p.sway}px`,
+          }}
+        />
+      ))}
     </div>
   );
 };
 
 const Hero = () => {
   const heroRef = useRef(null);
-  const { sceneY, sceneScale, fade, contentY } = useHeroScroll(heroRef);
+  const { sceneY, fade, contentY } = useHeroScroll(heroRef);
   return (
     <section className="hero" ref={heroRef}>
-      <motion.div className="hero-scene" style={{ y: sceneY, scale: sceneScale }}>
+      <motion.div className="hero-scene" style={{ y: sceneY }}>
         <motion.div
           className="hero-scene-zoom"
           initial={{ scale: 1.12, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 2.4, ease: [0.22, 1, 0.36, 1] }}
         >
-          <RoyalScene />
+          <img
+            src="/royal-stage.jpg"
+            alt=""
+            className="royal-scene"
+            fetchPriority="high"
+            decoding="async"
+          />
         </motion.div>
       </motion.div>
       <div className="hero-veil" aria-hidden="true" />

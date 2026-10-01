@@ -93,6 +93,15 @@
   display: block;
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+.hero-scene,
+.hero-scene-zoom,
+.hero-inner {
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 /* Darkens the arch centre so the text reads cleanly over the scene */
@@ -714,4 +723,41 @@ html.lenis, html.lenis body { height: auto; }
 
 @media (prefers-reduced-motion: reduce) {
   .marquee-track { animation: none; }
+}
+
+/* Falling petals (CSS only) */
+.petals {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  overflow: hidden;
+}
+
+.petal {
+  position: absolute;
+  top: -40px;
+  border-radius: 50% 2px 50% 2px;
+  opacity: 0;
+  will-change: transform, opacity;
+  animation-name: petal-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.petal--soft {
+  filter: none;
+  transform-origin: 30% 70%;
+}
+
+@keyframes petal-fall {
+  0%   { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0; }
+  10%  { opacity: 0.55; }
+  50%  { transform: translate3d(var(--sway), 55vh, 0) rotate(180deg); }
+  90%  { opacity: 0.45; }
+  100% { transform: translate3d(0, 110vh, 0) rotate(360deg); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .petals { display: none; }
 }

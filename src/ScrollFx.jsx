@@ -7,7 +7,7 @@ export const useSmoothScroll = (enabled) => {
   useEffect(() => {
     if (!enabled) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const lenis = new Lenis({ duration: 1.2, smoothWheel: true });
+    const lenis = new Lenis({ lerp: 0.12, smoothWheel: true, syncTouch: false });
     let raf;
     const loop = (time) => {
       lenis.raf(time);
@@ -75,7 +75,6 @@ export const useHeroScroll = (ref) => {
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
   return {
     sceneY: useTransform(scrollYProgress, [0, 1], [0, 260]),
-    sceneScale: useTransform(scrollYProgress, [0, 1], [1, 1.12]),
     contentY: useTransform(scrollYProgress, [0, 1], [0, -120]),
     fade: useTransform(scrollYProgress, [0, 0.6], [1, 0]),
   };
