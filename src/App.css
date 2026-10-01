@@ -78,8 +78,8 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  color: var(--cream);
-  background: #1c0508;
+  color: var(--wine);
+  background: #f3dcb6;
 }
 
 .hero-scene,
@@ -89,12 +89,12 @@
   will-change: transform;
 }
 
-.royal-scene {
+.hero-photo {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 50%;
+  object-position: 50% 40%;
 }
 
 .hero-scene,
@@ -104,14 +104,14 @@
   transform: translateZ(0);
 }
 
-/* Darkens the arch centre so the text reads cleanly over the scene */
+/* Soft cream glow behind the text so it reads over the sky and hills */
 .hero-veil {
   position: absolute;
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 42% 38% at 50% 50%, rgba(28, 5, 8, 0.72) 0%, rgba(28, 5, 8, 0.35) 60%, transparent 100%),
-    linear-gradient(180deg, rgba(28, 5, 8, 0.35) 0%, transparent 25%, transparent 75%, rgba(28, 5, 8, 0.6) 100%);
+    radial-gradient(ellipse 85% 46% at 50% 44%, rgba(250, 240, 222, 0.8) 0%, rgba(250, 240, 222, 0.5) 55%, transparent 100%),
+    linear-gradient(180deg, transparent 70%, rgba(250, 240, 222, 0.35) 100%);
 }
 
 .hero-inner {
@@ -123,11 +123,16 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 18svh 24px 22svh;
+  padding: 11svh 20px 30svh;
 }
 
 .eyebrow--gold {
   color: #d9b97f;
+}
+
+.eyebrow--hero {
+  color: var(--olive-deep);
+  font-weight: 500;
 }
 
 .hero-names {
@@ -140,8 +145,8 @@
   font-size: clamp(3.6rem, 16vw, 6.4rem);
   line-height: 0.92;
   letter-spacing: 0.01em;
-  color: var(--cream);
-  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  color: var(--wine);
+  text-shadow: 0 2px 24px rgba(255, 244, 225, 0.9);
 }
 
 .hero-amp {
@@ -150,7 +155,7 @@
   font-weight: 300;
   font-size: 0.55em;
   line-height: 1.1;
-  color: #d9b97f;
+  color: var(--dahlia);
 }
 
 .hero-request {
@@ -159,7 +164,7 @@
   font-style: italic;
   font-size: 1.1rem;
   line-height: 1.6;
-  color: rgba(243, 234, 217, 0.85);
+  color: var(--ink);
 }
 
 .hero-date {
@@ -171,8 +176,8 @@
   padding: 12px 0;
   width: 100%;
   max-width: 380px;
-  border-top: 1px solid rgba(217, 185, 127, 0.45);
-  border-bottom: 1px solid rgba(217, 185, 127, 0.45);
+  border-top: 1px solid rgba(75, 18, 25, 0.35);
+  border-bottom: 1px solid rgba(75, 18, 25, 0.35);
 }
 
 .hero-date-main {
@@ -181,7 +186,7 @@
   font-size: clamp(1.5rem, 6vw, 2rem);
   letter-spacing: 0.06em;
   white-space: nowrap;
-  color: var(--cream);
+  color: var(--wine);
 }
 
 .hero-date-side {
@@ -191,7 +196,8 @@
   font-size: 0.58rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: #d9b97f;
+  color: var(--olive-deep);
+  font-weight: 500;
 }
 
 .hero-date-side:first-child { text-align: right; }
@@ -209,7 +215,8 @@
   font-family: var(--font-display);
   font-style: italic;
   font-size: 2rem;
-  color: var(--cream);
+  color: var(--wine);
+  text-shadow: 0 2px 18px rgba(255, 244, 225, 0.9);
 }
 
 .scroll-cue {
@@ -219,7 +226,7 @@
   z-index: 1;
   width: 1px;
   height: 56px;
-  background: rgba(243, 234, 217, 0.2);
+  background: rgba(75, 18, 25, 0.2);
   overflow: hidden;
 }
 
@@ -229,7 +236,7 @@
   top: -40%;
   width: 1px;
   height: 40%;
-  background: #d9b97f;
+  background: var(--wine);
   animation: scroll-cue 2.2s ease-in-out infinite;
 }
 
@@ -417,14 +424,52 @@
 
 /* ───────── Events ───────── */
 .events-section {
+  position: relative;
   width: 100%;
-  padding: 120px 24px;
+  padding: 140px 24px;
   display: flex;
   justify-content: center;
-  background: var(--cream);
-  border-top: 1px solid var(--sand);
-  border-bottom: 1px solid var(--sand);
+  overflow: hidden;
+  background: var(--wine-deep);
+  color: var(--cream);
 }
+
+.events-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 45%;
+}
+
+/* Darkens the night photo so the cream text stays crisp */
+.events-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse 90% 55% at 50% 50%, rgba(28, 5, 8, 0.72) 0%, rgba(28, 5, 8, 0.42) 75%, rgba(28, 5, 8, 0.3) 100%);
+}
+
+.events-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.events-section .eyebrow { color: #d9b97f; }
+.events-section .events-title { color: var(--cream); }
+.events-section .events-title em { color: #e6c98f; }
+.events-section .event-value { color: var(--cream); }
+.events-section .event-rule { background: #d9b97f; }
+.events-section .minor-event {
+  background: rgba(28, 5, 8, 0.55);
+  border-color: rgba(217, 185, 127, 0.45);
+  backdrop-filter: none;
+}
+.events-section .minor-event-label { color: #e6c98f; }
+.events-section .minor-event-text { color: rgba(243, 234, 217, 0.85); }
 
 .events-inner {
   width: 100%;
@@ -607,10 +652,18 @@
 
 /* ───────── Wider screens ───────── */
 @media (min-width: 768px) {
+  .hero-inner {
+    padding: 16svh 24px 26svh;
+  }
+
+  .events-section::before {
+    background:
+      radial-gradient(ellipse 40% 55% at 50% 50%, rgba(28, 5, 8, 0.7) 0%, rgba(28, 5, 8, 0.3) 75%, rgba(28, 5, 8, 0.15) 100%);
+  }
+
   .hero-veil {
     background:
-      radial-gradient(ellipse 26% 52% at 50% 52%, rgba(28, 5, 8, 0.85) 0%, rgba(28, 5, 8, 0.5) 60%, transparent 100%),
-      linear-gradient(180deg, rgba(28, 5, 8, 0.35) 0%, transparent 25%, transparent 75%, rgba(28, 5, 8, 0.6) 100%);
+      radial-gradient(ellipse 34% 50% at 50% 50%, rgba(250, 240, 222, 0.8) 0%, rgba(250, 240, 222, 0.45) 55%, transparent 100%);
   }
 
   .family-grid {

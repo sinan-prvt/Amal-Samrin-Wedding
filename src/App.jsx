@@ -124,9 +124,9 @@ const Hero = () => {
           transition={{ duration: 2.4, ease: [0.22, 1, 0.36, 1] }}
         >
           <img
-            src="/royal-stage.jpg"
+            src="/hero-garden.webp"
             alt=""
-            className="royal-scene"
+            className="hero-photo"
             fetchPriority="high"
             decoding="async"
           />
@@ -141,7 +141,7 @@ const Hero = () => {
         variants={staggerContainer}
         style={{ opacity: fade, y: contentY }}
       >
-        <motion.div variants={fadeUpVariant} className="eyebrow eyebrow--gold">
+        <motion.div variants={fadeUpVariant} className="eyebrow eyebrow--hero">
           The Wedding Of
         </motion.div>
 
@@ -162,7 +162,7 @@ const Hero = () => {
         </motion.div>
 
         <motion.div variants={fadeUpVariant} className="hero-venue">
-          <span className="eyebrow eyebrow--gold">To be held at</span>
+          <span className="eyebrow eyebrow--hero">To be held at</span>
           <span className="hero-venue-name">Malhar Bhoomi</span>
         </motion.div>
       </motion.div>
@@ -301,6 +301,7 @@ function App() {
 
             {/* ─── Events ─── */}
             <section className="events-section">
+              <img src="/reception-night.webp" alt="" className="events-bg" loading="lazy" decoding="async" />
               <motion.div
                 initial="hidden"
                 whileInView="visible"
