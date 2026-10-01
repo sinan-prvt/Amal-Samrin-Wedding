@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Envelope from './Envelope';
 import MusicPlayer from './MusicPlayer';
 import CursorTrail from './CursorTrail';
 import Guestbook from './Guestbook';
 import EarthScene from './EarthScene';
+import {
+  useSmoothScroll, ScrollProgress, ParallaxPhoto, ScrollRevealText,
+  Marquee, HorizontalGallery, useHeroScroll,
+} from './ScrollFx';
 import './App.css';
 
 const fadeUpVariant = {
@@ -125,6 +129,75 @@ const FallingPetals = () => {
   );
 };
 
+/* Drop real photos into public/photos/ with these names — missing ones show a soft placeholder */
+const GALLERY = [
+  { src: '/photos/gallery-1.jpg', alt: 'Amal and Samrin', tone: 'dahlia', label: 'gallery-1.jpg', caption: 'The beginning' },
+  { src: '/photos/gallery-2.jpg', alt: 'Amal and Samrin', tone: 'olive', label: 'gallery-2.jpg', caption: 'Together' },
+  { src: '/photos/gallery-3.jpg', alt: 'Amal and Samrin', tone: 'sand', label: 'gallery-3.jpg', caption: 'Promises' },
+  { src: '/photos/gallery-4.jpg', alt: 'Amal and Samrin', tone: 'dahlia', label: 'gallery-4.jpg', caption: 'Forever' },
+  { src: '/photos/gallery-5.jpg', alt: 'Amal and Samrin', tone: 'olive', label: 'gallery-5.jpg', caption: 'Our day' },
+];
+
+const HeroArtwork = () => {
+  const [hasPhoto, setHasPhoto] = useState(true);
+  if (!hasPhoto) return <EarthScene />;
+  return <img src="/photos/hero.jpg" alt="Amal and Samrin" className="hero-photo" onError={() => setHasPhoto(false)} />;
+};
+
+const Hero = () => {
+  const heroRef = useRef(null);
+  const { archY, archScale, fade } = useHeroScroll(heroRef);
+  return (
+    <section className="hero" ref={heroRef}>
+      <div className="hero-grain" aria-hidden="true" />
+      <motion.div
+        className="hero-inner"
+        initial="hidden"
+        animate="visible"
+        variants={staggerContainer}
+      >
+        <motion.div variants={fadeUpVariant} className="eyebrow eyebrow--light">
+          The Wedding Of
+        </motion.div>
+
+        <motion.div variants={fadeUpVariant} className="hero-arch" style={{ y: archY, scale: archScale }}>
+          <HeroArtwork />
+          <div className="hero-monogram">
+            A<span>&amp;</span>S
+          </div>
+        </motion.div>
+
+        <motion.div style={{ opacity: fade }} className="hero-fade">
+        <motion.h1 variants={fadeUpVariant} className="hero-names">
+          <span>Amal</span>
+          <em className="hero-amp">&amp;</em>
+          <span>Samrin</span>
+        </motion.h1>
+
+        <motion.p variants={fadeUpVariant} className="hero-request">
+          We request the pleasure of your company<br />to celebrate our wedding on
+        </motion.p>
+
+        <motion.div variants={fadeUpVariant} className="hero-date">
+          <span className="hero-date-side">Thursday</span>
+          <span className="hero-date-main">24 · 12 · 2026</span>
+          <span className="hero-date-side">Six O'Clock</span>
+        </motion.div>
+
+        <motion.div variants={fadeUpVariant} className="hero-venue">
+          <span className="eyebrow eyebrow--light">To be held at</span>
+          <span className="hero-venue-name">Malhar Bhoomi</span>
+        </motion.div>
+
+        <motion.div variants={fadeUpVariant} className="scroll-cue" aria-hidden="true">
+          <span />
+        </motion.div>
+        </motion.div>
+      </motion.div>
+    </section>
+  );
+};
+
 const FamilyCard = ({ name, house, relation, parents, grandRelation, grandparents, tone }) => (
   <motion.div variants={fadeUpVariant} className={`family-card family-card--${tone}`}>
     <div className="family-card-arch">
@@ -141,6 +214,7 @@ const FamilyCard = ({ name, house, relation, parents, grandRelation, grandparent
 
 function App() {
   const [isOpened, setIsOpened] = useState(false);
+  useSmoothScroll(isOpened);
 
   useEffect(() => {
     if (isOpened) {
@@ -157,6 +231,7 @@ function App() {
           <CursorTrail />
           <FallingPetals />
           <MusicPlayer />
+          <ScrollProgress />
 
           <motion.div
             className="content-wrapper"
@@ -164,52 +239,9 @@ function App() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            {/* ─── Hero: earth landscape in an arch ─── */}
-            <section className="hero">
-              <div className="hero-grain" aria-hidden="true" />
-              <motion.div
-                className="hero-inner"
-                initial="hidden"
-                animate="visible"
-                variants={staggerContainer}
-              >
-                <motion.div variants={fadeUpVariant} className="eyebrow eyebrow--light">
-                  The Wedding Of
-                </motion.div>
+            <Hero />
 
-                <motion.div variants={fadeUpVariant} className="hero-arch">
-                  <EarthScene />
-                  <div className="hero-monogram">
-                    A<span>&amp;</span>S
-                  </div>
-                </motion.div>
-
-                <motion.h1 variants={fadeUpVariant} className="hero-names">
-                  <span>Amal</span>
-                  <em className="hero-amp">&amp;</em>
-                  <span>Samrin</span>
-                </motion.h1>
-
-                <motion.p variants={fadeUpVariant} className="hero-request">
-                  We request the pleasure of your company<br />to celebrate our wedding on
-                </motion.p>
-
-                <motion.div variants={fadeUpVariant} className="hero-date">
-                  <span className="hero-date-side">Thursday</span>
-                  <span className="hero-date-main">24 · 12 · 2026</span>
-                  <span className="hero-date-side">Six O'Clock</span>
-                </motion.div>
-
-                <motion.div variants={fadeUpVariant} className="hero-venue">
-                  <span className="eyebrow eyebrow--light">To be held at</span>
-                  <span className="hero-venue-name">Malhar Bhoomi</span>
-                </motion.div>
-
-                <motion.div variants={fadeUpVariant} className="scroll-cue" aria-hidden="true">
-                  <span />
-                </motion.div>
-              </motion.div>
-            </section>
+            <Marquee items={['Amal & Samrin', '26 · 12 · 2026', 'Malhar Bhoomi', 'Calicut']} />
 
             {/* ─── Countdown ─── */}
             <section className="countdown-section">
@@ -244,9 +276,7 @@ function App() {
                   وَخَلَقْنَاكُمْ أَزْوَاجًا
                 </motion.div>
 
-                <motion.div variants={fadeUpVariant} className="quote-english">
-                  “And We created you in pairs.”
-                </motion.div>
+                <ScrollRevealText className="quote-english" text="“And We created you in pairs.”" />
 
                 <motion.div variants={fadeUpVariant}>
                   <Sprig className="quote-sprig" />
@@ -294,6 +324,17 @@ function App() {
                 </div>
               </motion.div>
             </section>
+
+            {/* ─── Full-bleed parallax photo ─── */}
+            <section className="photo-band">
+              <ParallaxPhoto src="/photos/couple.jpg" alt="Amal and Samrin" tone="wine" label="couple.jpg" strength={90} />
+              <div className="photo-band-caption">
+                <div className="eyebrow eyebrow--light">Two hearts · One journey</div>
+              </div>
+            </section>
+
+            {/* ─── Horizontal gallery ─── */}
+            <HorizontalGallery photos={GALLERY} title={<>Our <em>Story</em></>} />
 
             {/* ─── Events ─── */}
             <section className="events-section">
