@@ -124,7 +124,7 @@ const Hero = () => {
           transition={{ duration: 2.4, ease: [0.22, 1, 0.36, 1] }}
         >
           <img
-            src="/hero-garden.webp"
+            src="/hero-venue.webp"
             alt=""
             className="hero-photo"
             fetchPriority="high"
