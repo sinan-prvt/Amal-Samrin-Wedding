@@ -110,7 +110,8 @@
   inset: 0;
   pointer-events: none;
   background:
-    linear-gradient(180deg, rgba(75, 18, 25, 0.12) 0%, transparent 30%, transparent 70%, rgba(250, 240, 222, 0.3) 100%);
+    radial-gradient(ellipse 75% 50% at 50% 46%, rgba(38, 12, 8, 0.55) 0%, rgba(38, 12, 8, 0.25) 70%, transparent 100%),
+    linear-gradient(180deg, rgba(38, 12, 8, 0.35) 0%, rgba(38, 12, 8, 0.15) 45%, rgba(38, 12, 8, 0.45) 100%);
 }
 
 .hero-inner {
@@ -122,7 +123,7 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 9svh 18px 16svh;
+  padding: 12svh 20px 20svh;
 }
 
 .eyebrow--gold {
@@ -130,24 +131,18 @@
 }
 
 .eyebrow--hero {
-  color: var(--olive-deep);
+  color: #f3dcae;
   font-weight: 500;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
 }
 
-/* Cream arch card that keeps the text crisp over the photo */
+/* Plain layout wrapper for the hero text (no background) */
 .hero-card {
   width: 100%;
-  max-width: 420px;
+  max-width: 460px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 64px 22px 36px;
-  border-radius: 999px 999px 18px 18px;
-  background: rgba(251, 245, 234, 0.9);
-  border: 1px solid rgba(201, 164, 106, 0.7);
-  box-shadow:
-    0 0 0 6px rgba(251, 245, 234, 0.35),
-    0 30px 60px rgba(75, 18, 25, 0.25);
 }
 
 .hero-names {
@@ -160,7 +155,8 @@
   font-size: clamp(3.4rem, 15vw, 5.6rem);
   line-height: 0.92;
   letter-spacing: 0.01em;
-  color: var(--wine);
+  color: #fffaf0;
+  text-shadow: 0 2px 4px rgba(40, 10, 8, 0.45), 0 8px 40px rgba(40, 10, 8, 0.55);
 }
 
 .hero-amp {
@@ -169,7 +165,7 @@
   font-weight: 300;
   font-size: 0.55em;
   line-height: 1.1;
-  color: var(--dahlia);
+  color: #f3dcae;
 }
 
 .hero-request {
@@ -179,7 +175,8 @@
   font-size: 1.15rem;
   font-weight: 500;
   line-height: 1.55;
-  color: var(--ink);
+  color: #fffaf0;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.65);
 }
 
 .hero-date {
@@ -191,8 +188,8 @@
   padding: 12px 0;
   width: 100%;
   max-width: 380px;
-  border-top: 1px solid rgba(201, 164, 106, 0.8);
-  border-bottom: 1px solid rgba(201, 164, 106, 0.8);
+  border-top: 1px solid rgba(243, 220, 174, 0.75);
+  border-bottom: 1px solid rgba(243, 220, 174, 0.75);
 }
 
 .hero-date-main {
@@ -201,7 +198,8 @@
   font-size: clamp(1.4rem, 6vw, 1.9rem);
   letter-spacing: 0.04em;
   white-space: nowrap;
-  color: var(--wine);
+  color: #fffaf0;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.6);
 }
 
 .hero-date-side {
@@ -211,8 +209,9 @@
   font-size: 0.58rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--olive-deep);
+  color: #f3dcae;
   font-weight: 500;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
 }
 
 .hero-date-side:first-child { text-align: right; }
@@ -231,7 +230,8 @@
   font-style: italic;
   font-size: 2rem;
   font-weight: 500;
-  color: var(--wine);
+  color: #fffaf0;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
 }
 
 .scroll-cue {
@@ -241,7 +241,7 @@
   z-index: 1;
   width: 1px;
   height: 56px;
-  background: rgba(75, 18, 25, 0.2);
+  background: rgba(255, 250, 240, 0.3);
   overflow: hidden;
 }
 
@@ -251,7 +251,7 @@
   top: -40%;
   width: 1px;
   height: 40%;
-  background: var(--wine);
+  background: #fffaf0;
   animation: scroll-cue 2.2s ease-in-out infinite;
 }
 
@@ -671,10 +671,6 @@
     padding: 12svh 24px 14svh;
   }
 
-  .hero-card {
-    max-width: 480px;
-    padding: 80px 40px 44px;
-  }
 
   .events-section::before {
     background:
