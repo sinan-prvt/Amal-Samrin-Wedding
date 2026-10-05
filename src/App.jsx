@@ -34,7 +34,7 @@ const Sprig = ({ className = '' }) => (
 
 const CountdownTimer = () => {
   const calculateTimeLeft = () => {
-    const difference = +new Date('2026-12-26T17:00:00') - +new Date();
+    const difference = +new Date('2026-12-27T17:00:00') - +new Date();
     let timeLeft = {};
     if (difference > 0) {
       timeLeft = {
@@ -153,13 +153,13 @@ const Hero = () => {
           </motion.h1>
 
           <motion.p variants={fadeUpVariant} className="hero-request">
-            We request the pleasure of your company<br />to celebrate our wedding on
+            We request the pleasure of your company<br />at our Wedding Reception on
           </motion.p>
 
           <motion.div variants={fadeUpVariant} className="hero-date">
-            <span className="hero-date-side">Thursday</span>
-            <span className="hero-date-main">24 · 12 · 2026</span>
-            <span className="hero-date-side">Six O'Clock</span>
+            <span className="hero-date-side">Sunday</span>
+            <span className="hero-date-main">27 · 12 · 2026</span>
+            <span className="hero-date-side">5 PM Onwards</span>
           </motion.div>
 
           <motion.div variants={fadeUpVariant} className="hero-venue">
@@ -217,7 +217,7 @@ function App() {
           >
             <Hero />
 
-            <Marquee items={['Amal & Samrin', '26 · 12 · 2026', 'Malhar Bhoomi', 'Calicut']} />
+            <Marquee items={['Amal & Samrin', '27 · 12 · 2026', 'Malhar Bhoomi', 'Calicut']} />
 
             {/* ─── Countdown ─── */}
             <section className="countdown-section">
@@ -229,7 +229,7 @@ function App() {
                 variants={staggerContainer}
               >
                 <motion.div variants={fadeUpVariant} className="eyebrow">
-                  Until 26 December 2026
+                  Until 27 December 2026
                 </motion.div>
                 <CountdownTimer />
               </motion.div>
@@ -319,7 +319,7 @@ function App() {
                 <motion.div variants={fadeUpVariant} className="event-grid">
                   <div className="event-cell">
                     <div className="eyebrow">When</div>
-                    <div className="event-value">Saturday, December 26<br />at 5:00 PM</div>
+                    <div className="event-value">Sunday, December 27<br />5:00 PM onwards</div>
                   </div>
                   <div className="event-rule" />
                   <div className="event-cell">
