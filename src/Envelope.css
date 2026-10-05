@@ -84,34 +84,49 @@
   cursor: pointer;
 }
 
-.css-golden-seal {
+.wax-seal {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100px;
-  height: 100px;
-  background: radial-gradient(circle at 35% 30%, #a3343f 0%, #7a1f2b 55%, #4b1219 100%);
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 
-    0 15px 25px rgba(0,0,0,0.15), 
-    inset 0 2px 6px rgba(255,255,255,0.25),
-    inset 0 -6px 14px rgba(46, 10, 15, 0.6);
-  border: 3px double rgba(243, 234, 217, 0.45);
-  color: var(--cream);
-  font-family: var(--font-display);
-  font-size: 2rem;
-  font-weight: 400;
-  font-style: italic;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.4);
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  inset: -10px;
+  width: calc(100% + 20px);
+  height: calc(100% + 20px);
+  overflow: visible;
+  filter: drop-shadow(0 14px 18px rgba(46, 10, 15, 0.35));
+  transition: transform 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   z-index: 2;
 }
 
-.css-golden-seal:hover {
-  transform: scale(1.1) rotate(5deg);
+.wax-seal-wrapper:hover .wax-seal {
+  transform: scale(1.08) rotate(-4deg);
+}
+
+.wax-seal-letter {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 30px;
+  fill: #fbf1df;
+  paint-order: stroke;
+  stroke: #3a0d14;
+  stroke-width: 0.8;
+  stroke-opacity: 0.5;
+}
+
+.wax-seal-heart {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: seal-heartbeat 1.8s ease-in-out infinite;
+}
+
+@keyframes seal-heartbeat {
+  0%, 100% { transform: scale(1); }
+  14% { transform: scale(1.22); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.14); }
+  70% { transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wax-seal-heart { animation: none; }
 }
 
 .tap-pulse {
@@ -147,11 +162,6 @@
     letter-spacing: 2px;
   }
   .wax-seal-wrapper { width: 90px; height: 90px; }
-  .css-golden-seal { 
-    width: 90px; 
-    height: 90px; 
-    font-size: 1.8rem; 
-  }
   .tap-pulse { 
     top: 110px; 
     font-size: 0.7rem; 
