@@ -69,8 +69,8 @@ const WaxSeal = () => (
     <circle cx="60" cy="19" r="1.6" fill="url(#seal-gold)" />
 
     {/* Monogram: A ♥ S */}
-    <text x="40" y="69" textAnchor="middle" className="wax-seal-letter">A</text>
-    <text x="80" y="69" textAnchor="middle" className="wax-seal-letter">S</text>
+    <text x="42.5" y="69" textAnchor="middle" className="wax-seal-letter">A</text>
+    <text x="77.5" y="69" textAnchor="middle" className="wax-seal-letter">S</text>
     <path
       className="wax-seal-heart"
       d="M60 70 C 50 62 52.5 53.5 57.2 54.2 C 58.7 54.4 59.6 55.4 60 56.6 C 60.4 55.4 61.3 54.4 62.8 54.2 C 67.5 53.5 70 62 60 70 Z"

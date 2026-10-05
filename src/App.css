@@ -59,8 +59,12 @@
 
 .section-title em,
 .events-title em {
-  font-style: italic;
+  font-style: normal;
   color: var(--dahlia);
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: 1.25em;
+  letter-spacing: 0;
 }
 
 .sprig {
@@ -150,21 +154,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(3.4rem, 15vw, 5.6rem);
-  line-height: 0.92;
-  letter-spacing: 0.01em;
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: clamp(4.4rem, 20vw, 7.2rem);
+  line-height: 1;
+  letter-spacing: 0;
   color: #fffaf0;
   text-shadow: 0 2px 4px rgba(40, 10, 8, 0.45), 0 8px 40px rgba(40, 10, 8, 0.55);
+  font-style: normal;
 }
 
 .hero-amp {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 300;
-  font-size: 0.55em;
-  line-height: 1.1;
+  font-family: var(--font-script);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.6em;
+  line-height: 1;
   color: #f3dcae;
 }
 
@@ -193,8 +198,8 @@
 }
 
 .hero-date-main {
-  font-family: var(--font-display);
-  font-weight: 600;
+  font-family: var(--font-sans);
+  font-weight: 400;
   font-size: clamp(1.4rem, 6vw, 1.9rem);
   letter-spacing: 0.04em;
   white-space: nowrap;
@@ -226,12 +231,13 @@
 }
 
 .hero-venue-name {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 2rem;
-  font-weight: 500;
+  font-family: var(--font-script);
+  font-style: normal;
+  font-size: 2.6rem;
+  font-weight: 400;
   color: #fffaf0;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
+  letter-spacing: 0;
 }
 
 .scroll-cue {
@@ -295,8 +301,8 @@
 }
 
 .countdown-value {
-  font-family: var(--font-display);
-  font-weight: 300;
+  font-family: var(--font-sans);
+  font-weight: 400;
   font-size: clamp(2.4rem, 10vw, 3.6rem);
   line-height: 1;
   color: var(--dahlia);
@@ -397,10 +403,12 @@
 }
 
 .family-name {
-  font-family: var(--font-display);
+  font-family: var(--font-script);
   font-weight: 400;
-  font-size: 2rem;
+  font-size: 2.8rem;
   line-height: 1.1;
+  font-style: normal;
+  letter-spacing: 0;
 }
 
 .family-house {
@@ -602,16 +610,17 @@
 }
 
 .footer-names {
-  font-family: var(--font-display);
-  font-weight: 300;
+  font-family: var(--font-script);
+  font-weight: 400;
   font-size: clamp(3rem, 12vw, 4.8rem);
   line-height: 1;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
+  font-style: normal;
 }
 
 .footer-names em {
-  font-family: var(--font-display);
-  font-style: italic;
+  font-family: var(--font-script);
+  font-style: normal;
   font-size: 0.7em;
   color: #b9b77a;
 }
@@ -715,9 +724,9 @@ html.lenis, html.lenis body { height: auto; }
   align-items: center;
   gap: 28px;
   padding-right: 28px;
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 1.35rem;
+  font-family: var(--font-script);
+  font-style: normal;
+  font-size: 1.7rem;
   white-space: nowrap;
 }
 
