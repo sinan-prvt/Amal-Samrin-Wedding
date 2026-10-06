@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import Envelope from './Envelope';
 import MusicPlayer from './MusicPlayer';
 import CursorTrail from './CursorTrail';
-import Guestbook from './Guestbook';
+import LoveWishes from './LoveWishes';
 import {
   useSmoothScroll, ScrollProgress, ScrollRevealText, Marquee, useHeroScroll,
 } from './ScrollFx';
@@ -370,8 +370,8 @@ function App() {
             </section>
           </motion.div>
 
-          {/* Guestbook Section */}
-          <Guestbook />
+          {/* Love wishes */}
+          <LoveWishes />
 
           <footer className="footer-section">
             <div className="footer-watermark" aria-hidden="true">A&amp;S</div>
