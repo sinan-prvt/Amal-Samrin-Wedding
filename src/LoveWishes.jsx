@@ -201,7 +201,6 @@ const LoveWishes = () => {
         <motion.div variants={fadeUpVariant} className="love-count" aria-live="polite">
           {count === null ? ' ' : (
             <>
-              <span className="love-live" aria-hidden="true"><span className="love-live-dot" />Live</span>
               <motion.span
                 key={count}
                 className="love-count-number"
