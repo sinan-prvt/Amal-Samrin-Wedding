@@ -913,34 +913,6 @@ html.lenis, html.lenis body { height: auto; }
   font-variant-numeric: tabular-nums;
 }
 
-.love-live {
-  align-self: center;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 3px 9px;
-  border-radius: 999px;
-  background: var(--dahlia);
-  color: var(--cream);
-  font-family: var(--font-sans);
-  font-size: 0.58rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-}
-
-.love-live-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #f6e2b3;
-  animation: love-live 1.4s ease-in-out infinite;
-}
-
-@keyframes love-live {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.25; }
-}
-
 .love-count-label {
   font-family: var(--font-sans);
   font-size: 0.68rem;
@@ -950,5 +922,5 @@ html.lenis, html.lenis body { height: auto; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .love-ring, .love-heart, .love-live-dot { animation: none; }
+  .love-ring, .love-heart { animation: none; }
 }
