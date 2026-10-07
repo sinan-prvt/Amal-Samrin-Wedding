@@ -68,14 +68,8 @@ const WaxSeal = () => (
     </g>
     <circle cx="60" cy="19" r="1.6" fill="url(#seal-gold)" />
 
-    {/* Monogram: A ♥ S */}
-    <text x="42.5" y="69" textAnchor="middle" className="wax-seal-letter">A</text>
-    <text x="77.5" y="69" textAnchor="middle" className="wax-seal-letter">S</text>
-    <path
-      className="wax-seal-heart"
-      d="M60 70 C 50 62 52.5 53.5 57.2 54.2 C 58.7 54.4 59.6 55.4 60 56.6 C 60.4 55.4 61.3 54.4 62.8 54.2 C 67.5 53.5 70 62 60 70 Z"
-      fill="url(#seal-gold)"
-    />
+    {/* Professional 'weds' */}
+    <text x="62" y="62" textAnchor="middle" dominantBaseline="middle" style={{ fontFamily: "var(--font-display)", fontSize: "11px", letterSpacing: "4px", fontWeight: 600, fill: "url(#seal-gold)", opacity: 0.95 }}>WEDS</text>
 
     {/* Soft shine */}
     <ellipse cx="42" cy="30" rx="15" ry="6" fill="#ffffff" opacity="0.07" transform="rotate(-30 42 30)" />
@@ -90,7 +84,7 @@ const WelcomeScreen = ({ onOpen }) => {
     if (isOpen) return;
     setIsOpen(true);
     if (onOpen) onOpen(); // Call instantly so music starts immediately!
-    
+
     // Give time for the gatefold to slide open fully
     setTimeout(() => {
       setIsHidden(true);
@@ -102,7 +96,7 @@ const WelcomeScreen = ({ onOpen }) => {
   return (
     <div className="gatefold-scene">
       {/* LEFT PANEL */}
-      <motion.div 
+      <motion.div
         className="gatefold-panel left-panel"
         initial={{ x: 0 }}
         animate={isOpen ? { x: '-100vw' } : { x: 0 }}
@@ -111,14 +105,14 @@ const WelcomeScreen = ({ onOpen }) => {
       >
         <img src="/floral-top-left.png" alt="" style={{ position: 'absolute', top: '-10px', left: '-20px', width: '200px', mixBlendMode: 'multiply', opacity: 0.8, pointerEvents: 'none' }} />
         <img src="/floral-top-left.png" alt="" style={{ position: 'absolute', bottom: '-10px', left: '-20px', width: '200px', mixBlendMode: 'multiply', opacity: 0.8, pointerEvents: 'none', transform: 'scaleY(-1)' }} />
-        
+
         <div className="panel-content left-content" style={{ zIndex: 2 }}>
           <h1 className="gatefold-name">Amal</h1>
         </div>
       </motion.div>
 
       {/* RIGHT PANEL */}
-      <motion.div 
+      <motion.div
         className="gatefold-panel right-panel"
         initial={{ x: 0 }}
         animate={isOpen ? { x: '100vw' } : { x: 0 }}
@@ -127,7 +121,7 @@ const WelcomeScreen = ({ onOpen }) => {
       >
         <img src="/floral-top-left.png" alt="" style={{ position: 'absolute', top: '-10px', right: '-20px', width: '200px', mixBlendMode: 'multiply', opacity: 0.8, pointerEvents: 'none', transform: 'scaleX(-1)' }} />
         <img src="/floral-top-left.png" alt="" style={{ position: 'absolute', bottom: '-10px', right: '-20px', width: '200px', mixBlendMode: 'multiply', opacity: 0.8, pointerEvents: 'none', transform: 'rotate(180deg)' }} />
-        
+
         <div className="panel-content right-content" style={{ zIndex: 2 }}>
           <h1 className="gatefold-name">Samrin</h1>
         </div>
@@ -136,7 +130,7 @@ const WelcomeScreen = ({ onOpen }) => {
       {/* CENTER SEAL & CALL TO ACTION */}
       <AnimatePresence>
         {!isOpen && (
-          <motion.div 
+          <motion.div
             className="gatefold-center-lock"
             initial={{ scale: 1, opacity: 1 }}
             exit={{ scale: 1.5, opacity: 0 }}

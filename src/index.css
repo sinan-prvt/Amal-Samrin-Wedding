@@ -1,26 +1,37 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Alex+Brush&family=Marcellus&family=Amiri:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;500;600&family=Amiri:wght@400;700&family=Playfair+Display:ital,wght@1,600&family=Cormorant+Garamond:ital,wght@1,600&display=swap');
+
+@font-face {
+  font-family: 'Brittany Signature';
+  src: url('/fonts/BrittanySignature.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 /* ─── Earth palette: Buttercream · Red Dahlia · Green Olive ─── */
 :root {
-  --cream: #f3ead9;          /* Pantone 11-0110 Buttercream */
+  --cream: #f3ead9;
+  /* Pantone 11-0110 Buttercream */
   --paper: #faf5ec;
   --sand: #e3d4b8;
   --clay: #b7895f;
 
-  --dahlia: #7a1f2b;         /* Pantone 19-1555 Red Dahlia */
+  --dahlia: #7a1f2b;
+  /* Pantone 19-1555 Red Dahlia */
   --wine: #4b1219;
   --wine-deep: #2e0a0f;
 
-  --olive: #8a8a4e;          /* Pantone 17-0535 Green Olive */
+  --olive: #8a8a4e;
+  /* Pantone 17-0535 Green Olive */
   --olive-deep: #55582f;
   --moss: #3b3f22;
 
   --ink: #2a1a16;
   --ink-soft: #6b564b;
 
-  --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
-  --font-sans: 'Marcellus', 'Times New Roman', serif;
-  --font-script: 'Alex Brush', cursive;
+  --font-display: 'Cinzel', serif;
+  --font-sans: 'Cinzel', serif;
+  --font-script: 'Brittany Signature', cursive;
+  --font-title-script: 'Great Vibes', cursive;
   --font-arabic: 'Amiri', serif;
 
   /* legacy aliases used by Guestbook / MusicPlayer */
@@ -55,7 +66,12 @@ body {
   min-height: 100vh;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-display);
   font-weight: 400;
 }
