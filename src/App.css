@@ -61,9 +61,9 @@
 .events-title em {
   font-style: normal;
   color: var(--dahlia);
-  font-family: var(--font-script);
+  font-family: var(--font-title-script);
   font-weight: 400;
-  font-size: 1.25em;
+  font-size: 1.4em;
   letter-spacing: 0;
 }
 
@@ -156,8 +156,8 @@
   align-items: center;
   font-family: var(--font-script);
   font-weight: 400;
-  font-size: clamp(4.4rem, 20vw, 7.2rem);
-  line-height: 1;
+  font-size: clamp(3.2rem, 12vw, 5rem);
+  line-height: 1.1;
   letter-spacing: 0;
   color: #fffaf0;
   text-shadow: 0 2px 4px rgba(40, 10, 8, 0.45), 0 8px 40px rgba(40, 10, 8, 0.55);
@@ -716,9 +716,9 @@ html.lenis, html.lenis body { height: auto; }
   align-items: center;
   gap: 28px;
   padding-right: 28px;
-  font-family: var(--font-script);
+  font-family: var(--font-title-script);
   font-style: normal;
-  font-size: 1.7rem;
+  font-size: 2.2rem;
   white-space: nowrap;
 }
 
