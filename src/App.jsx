@@ -281,8 +281,8 @@ function App() {
                 <div className="family-grid">
                   <FamilyCard
                     tone="dahlia"
-                    name="Amal Ammattikas"
-                    house="Ammattikas House"
+                    name="Amal Ammattikkas"
+                    house="Ammattikkas House"
                     relation="Son of"
                     parents="PK Abdul Jabbar & Rahmath K"
                     grandRelation="Grandson of"
